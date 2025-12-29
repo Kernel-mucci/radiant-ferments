@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raydiant Ferments - Small Batched Weekly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: #2d4a2b;
+            background-color: #faf8f3;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #faf8f3;
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid #2d4a2b;
+        }
+
+        .logo {
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        nav {
+            background-color: #2d4a2b;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #faf8f3;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f4a460;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(45, 74, 43, 0.9), rgba(107, 142, 35, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%236b8e23" width="1200" height="400"/></svg>');
+            color: #faf8f3;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-style: normal;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #f4a460;
+            color: #2d4a2b;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #2d4a2b;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #f4a460;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #6b8e23;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-card h3 {
+            color: #2d4a2b;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .product-size {
+            color: #f4a460;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .product-card p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .flavor-profile {
+            background-color: #f9f6f0;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            border-left: 3px solid #6b8e23;
+        }
+
+        .flavor-profile strong {
+            color: #2d4a2b;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .flavor-notes {
+            font-style: italic;
+            color: #6b8e23;
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .use-cases {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .use-cases strong {
+            color: #2d4a2b;
+        }
+
+        .about-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .philosophy-box {
+            background-color: #f9f6f0;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 5px solid #f4a460;
+        }
+
+        .philosophy-box h3 {
+            color: #2d4a2b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .philosophy-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .philosophy-box li {
+            padding: 0.5rem 0;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .philosophy-box li::before {
+            content: "→ ";
+            color: #6b8e23;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .location-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #f4a460;
+        }
+
+        .location-card h3 {
+            color: #2d4a2b;
+            margin-bottom: 1rem;
+        }
+
+        .location-card p {
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2d4a2b;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #6b8e23;
+        }
+
+        .submit-button {
+            background-color: #2d4a2b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #6b8e23;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: #2d4a2b;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #f4a460;
+        }
+
+        footer {
+            background-color: #2d4a2b;
+            color: #faf8f3;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .season-banner {
+            background-color: #6b8e23;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="season-banner">
+        Spring 2026 - Fall 2026 Lineup Now Available
+    </div>
+
+    <header>
+        <img src="https://raw.githubusercontent.com/user/repo/main/logo.png" alt="Raydiant Ferments Logo" class="logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#locations">Where to Buy</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero" id="home">
+        <h1>Raydiant Ferments</h1>
+        <p>Small Batched Weekly!</p>
+        <a href="#contact" class="cta-button">Order Custom Batch</a>
+    </div>
+
+    <div class="container">
+        <section id="products">
+            <h2>Spring 2026 - Fall 2026 Offerings</h2>
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <h3>Chicago-Style Fermented Giardinara</h3>
+                    <span class="product-size">12 oz jar</span>
+                    <p>A Midwest-rooted, naturally fermented giardinara designed to land exactly where it should—on Italian beefs, sausages, and sandwiches. Fermentation-forward and oil-free to preserve brightness, crunch, and versatility.</p>
+                    <div class="flavor-profile">
+                        <strong>Flavor Profile:</strong>
+                        Cauliflower, carrot, celery, red bell pepper, jalapeño, serrano, garlic, oregano, bay
+                        <div class="flavor-notes">Bright acidity • crunchy • assertive heat</div>
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Italian beef, brats, burgers, antipasto, chopped relish, pizza topping
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Citrus & Herb Fermented Cucumbers + Onion</h3>
+                    <span class="product-size">16 oz jar</span>
+                    <p>A layered, aromatic pickle emphasizing balance over sharp acidity. Citrus peel oils and herbs elevate the brine without overpowering the cucumber.</p>
+                    <div class="flavor-profile">
+                        <strong>Flavor Profile:</strong>
+                        Persian cucumbers, yellow onion, lemon/lime/orange peel, dill, thyme, bay, kaffir lime leaf, coriander
+                        <div class="flavor-notes">Fresh • herbal • lightly citrusy</div>
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Charcuterie, grilled meats, cocktails, straight snacking
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Huckleberry Red Cabbage Sauerkraut</h3>
+                    <span class="product-size">16 oz jar</span>
+                    <p>A Montana-driven kraut that balances deep fermentation with subtle berry sweetness and warming spice. Visually striking, cleanly acidic, and food-forward.</p>
+                    <div class="flavor-profile">
+                        <strong>Flavor Profile:</strong>
+                        Red cabbage, carrot, huckleberry, caraway
+                        <div class="flavor-notes">Earthy • tangy • lightly sweet</div>
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Brats, pork, duck, grain bowls, pierogi, probiotic side
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Montana Kimchi</h3>
+                    <span class="product-size">16 oz jar</span>
+                    <p>A restrained, everyday kimchi built for generous use. Bold umami and heat without overwhelming funk.</p>
+                    <div class="flavor-profile">
+                        <strong>Flavor Profile:</strong>
+                        Napa cabbage, daikon, garlic, ginger, chili paste
+                        <div class="flavor-notes">Savory • balanced heat • deeply fermented</div>
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Rice bowls, eggs, ramen, fried rice, grilled meats
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Fresno Fermented Hot Sauce</h3>
+                    <span class="product-size">8 oz bottle</span>
+                    <p>A clean, pepper-forward fermented hot sauce highlighting Fresno chilies' natural sweetness and moderate heat. Designed for daily use rather than novelty heat chasing.</p>
+                    <div class="flavor-profile">
+                        <strong>Flavor Profile:</strong>
+                        Fresno peppers, garlic, ginger, fermented depth
+                        <div class="flavor-notes">Bright • slightly sweet • medium heat</div>
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Eggs, tacos, roasted vegetables, grain bowls, marinades
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Whole-Seed Fermented Mustard</h3>
+                    <span class="product-size">8 oz jar</span>
+                    <p>A slow-fermented mustard built on texture and complexity rather than sharp vinegar bite. Whole seeds create pop and body, while fermentation softens bitterness and deepens savoriness.</p>
+                    <div class="flavor-profile">
+                        <strong>Flavor Profile:</strong>
+                        Yellow & black mustard seed, garlic, turmeric, light acidity
+                        <div class="flavor-notes">Earthy • savory • gently pungent</div>
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Sausages, charcuterie, vinaigrettes, glazes, sandwiches
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Cultured Milk Kefir</h3>
+                    <span class="product-size">16 oz bottle (Plain base / Rotating flavors)</span>
+                    <p>A living, probiotic-rich cultured dairy drink with a clean, lightly tangy finish. Light effervescence and minimal sweetness allow for both sipping and culinary use.</p>
+                    <div class="flavor-profile">
+                        <strong>Flavor Profile:</strong>
+                        Fresh dairy tang • lightly effervescent • clean finish
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Straight drinking, smoothies, dressings, marinades, fermentation starter
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <h3>Small-Batch Kombucha</h3>
+                    <span class="product-size">16 oz bottle (Rotating flavors)</span>
+                    <p>Naturally fermented kombucha brewed dry and tea-forward, emphasizing balance over sweetness. Base profile: crisp acidity, restrained carbonation, clean finish.</p>
+                    <div class="flavor-profile">
+                        <strong>Rotational Flavors:</strong>
+                        Coffee kombucha, ginger spice, vanilla-forward, seasonal fruit or herb expressions
+                        <div class="flavor-notes">Crisp acidity • restrained carbonation • clean finish</div>
+                    </div>
+                    <div class="use-cases">
+                        <strong>Perfect for:</strong> Daily refreshment, digestive support, probiotic boost
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>Our Story</h2>
+            <div class="about-content">
+                <p>Raydiant Ferments was born at the intersection of food, science, and care for community.</p>
+                
+                <p>For over a decade, my career lived in food and beverage leadership. I have run kitchens, dining rooms, beverage programs, and teams in environments where hospitality is not a concept, it is a responsibility. Food, at its best, is nourishment, culture, and connection. It is how we take care of one another.</p>
+                
+                <p>Alongside that work, I was trained as an educator, with a background rooted in math and science. That foundation shaped how I approach food: curious, evidence-based, and deeply interested in how systems work, especially the systems inside our bodies.</p>
+
+                <p>The spark that turned those threads into Raydiant Ferments came from a life-altering experience. After a severe MRSA infection, I spent an extended period on IV antibiotics. While those treatments saved my life, they also stripped my gut of much of its microbial diversity. Recovery was not just about healing wounds. It was about rebuilding from the inside out.</p>
+
+                <p>Fermented foods became both a practical tool and a philosophy. I experienced firsthand how intentional fermentation could support digestion, resilience, and overall well-being. More than that, I saw how inaccessible truly alive, thoughtfully made fermented foods often were. Many were diluted into novelty products or stripped of their original purpose.</p>
+
+                <p>Raydiant Ferments exists to change that.</p>
+
+                <p>Every product is small-batched, fermentation-first, and designed to be eaten with real meals rather than treated as an afterthought. This is not about trends or gimmicks. It is about using time-tested methods, guided by modern understanding, to support gut health, flavor, and community vitality.</p>
+
+                <p>At its core, Raydiant Ferments is an extension of how I have always worked: help people feel better, feed them well, and leave systems stronger than you found them.</p>
+
+                <p>This company is for anyone who believes food should do more than fill a plate. It should help us heal, connect, and thrive.</p>
+            </div>
+        </section>
+
+        <section id="locations">
+            <h2>Where to Buy</h2>
+            <div class="locations-grid">
+                <div class="location-card">
+                    <h3>Missoula Farmers Market</h3>
+                    <p><strong>When:</strong> Saturdays, 8am - 1pm</p>
+                    <p><strong>Season:</strong> May - October</p>
+                    <p>Find us at our booth for the freshest selection and to chat about fermentation!</p>
+                </div>
+
+                <div class="location-card">
+                    <h3>Local Retailers</h3>
+                    <p>We're working on partnerships with local health food stores and co-ops in the Missoula area.</p>
+                    <p>Check back for updates on where you can find our products year-round.</p>
+                </div>
+
+                <div class="location-card">
+                    <h3>Custom Orders & Wholesale</h3>
+                    <p>Need ferments for a special event, restaurant, or want to stock up? We take custom orders and offer wholesale pricing for restaurants and retailers.</p>
+                    <p><a href="#contact" style="color: #6b8e23; font-weight: bold;">Contact us</a> to discuss your needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inquiry-type">Inquiry Type *</label>
+                        <select id="inquiry-type" name="inquiry-type" required>
+                            <option value="">Select an option</option>
+                            <option value="custom-order">Custom Order</option>
+                            <option value="wholesale">Wholesale Inquiry</option>
+                            <option value="general">General Question</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+
+                <div class="social-links">
+                    <a href="https://instagram.com/raydiantferments" target="_blank">📷 Instagram</a>
+                    <a href="https://facebook.com/raydiantferments" target="_blank">📘 Facebook</a>
+                    <a href="mailto:hello@raydiant-ferments.com">✉️ Email</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Raydiant Ferments. All rights reserved.</p>
+        <p>Small Batched Weekly in Missoula, Montana</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We\'ll get back to you soon.\n\nNote: This is a demo form. To make it functional, you\'ll need to connect it to a form handling service like Formspree, Netlify Forms, or your email provider.');
+            this.reset();
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
