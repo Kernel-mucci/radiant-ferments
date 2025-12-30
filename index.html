@@ -556,7 +556,7 @@
         <section id="contact">
             <h2>Get in Touch</h2>
             <div class="contact-form">
-                <form id="contactForm">
+                <form id="contactForm" action="https://formspree.io/f/mzdblkol" method="POST">
                     <div class="form-group">
                         <label for="name">Name *</label>
                         <input type="text" id="name" name="name" required>
@@ -606,11 +606,7 @@
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We\'ll get back to you soon.\n\nNote: This is a demo form. To make it functional, you\'ll need to connect it to a form handling service like Formspree, Netlify Forms, or your email provider.');
-            this.reset();
-        });
+        
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
