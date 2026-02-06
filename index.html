@@ -3,7 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raydiant Ferments - Small Batched Weekly</title>
+    <title>Raydiant Ferments - Small Batch Fermented Foods | Missoula, MT</title>
+    <meta name="description" content="Small-batch, naturally fermented foods crafted weekly in Missoula, Montana. Sauerkraut, kimchi, pickles, kombucha, kefir, hot sauce, and more. Available at the Missoula Farmers Market and by custom order.">
+    <meta name="keywords" content="fermented foods, sauerkraut, kimchi, kombucha, kefir, pickles, hot sauce, mustard, probiotics, gut health, Missoula, Montana, farmers market, small batch">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://raydiant-ferments.com/">
+    <meta property="og:title" content="Raydiant Ferments - Small Batch Fermented Foods | Missoula, MT">
+    <meta property="og:description" content="Small-batch, naturally fermented foods crafted weekly in Missoula, Montana. Sauerkraut, kimchi, pickles, kombucha, kefir, hot sauce, and more.">
+    <meta property="og:image" content="https://raydiant-ferments.com/raydiant-ferments-logo-social.jpg">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Raydiant Ferments - Small Batch Fermented Foods">
+    <meta name="twitter:description" content="Small-batch, naturally fermented foods crafted weekly in Missoula, Montana.">
+    <meta name="twitter:image" content="https://raydiant-ferments.com/raydiant-ferments-logo-social.jpg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://raydiant-ferments.com/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Structured Data (Local Business) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Raydiant Ferments",
+        "description": "Small-batch, naturally fermented foods crafted weekly in Missoula, Montana.",
+        "url": "https://raydiant-ferments.com",
+        "email": "hello@raydiant-ferments.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Missoula",
+            "addressRegion": "MT",
+            "addressCountry": "US"
+        },
+        "sameAs": [
+            "https://www.instagram.com/raydiant_ferments/",
+            "https://facebook.com/raydiantferments"
+        ],
+        "foundingDate": "2025",
+        "priceRange": "$$"
+    }
+    </script>
     <style>
         * {
             margin: 0;
@@ -19,20 +65,20 @@
         }
 
         header {
-    background-color: #e8e4d8;
-    background-image: url('raydiant ferments mountains.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 0;
-    text-align: center;
-    border-bottom: 0;
-    min-height: 650px;
-}
-
-        .logo {
-    display: none;
-}
+            background-color: #e8e4d8;
+            background-image: url('raydiant-ferments-mountains.jpg');
+            background-image: image-set(
+                url('raydiant-ferments-mountains.webp') type('image/webp'),
+                url('raydiant-ferments-mountains.jpg') type('image/jpeg')
+            );
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 0;
+            text-align: center;
+            border-bottom: 0;
+            min-height: 650px;
+        }
 
         nav {
             background-color: #2d4a2b;
@@ -70,8 +116,9 @@
             text-align: center;
         }
 
-        .hero h1 {
+        .hero-title {
             font-size: 3rem;
+            font-weight: bold;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -339,13 +386,99 @@
             font-size: 1.1rem;
         }
 
+        /* Visually hidden but accessible to screen readers */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Skip navigation link for keyboard users */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            background: #2d4a2b;
+            color: #faf8f3;
+            padding: 0.5rem 1rem;
+            z-index: 200;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Focus styles for keyboard navigation */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible,
+        select:focus-visible {
+            outline: 3px solid #f4a460;
+            outline-offset: 2px;
+        }
+
+        /* Form status messages */
+        .form-status {
+            margin-top: 1rem;
+            padding: 0;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            padding: 1rem;
+            background-color: #e8f5e9;
+            color: #2d4a2b;
+            border: 1px solid #6b8e23;
+        }
+
+        .form-status.error {
+            display: block;
+            padding: 1rem;
+            background-color: #fce4ec;
+            color: #c62828;
+            border: 1px solid #c62828;
+        }
+
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* Tablet breakpoint */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            .hero h1 {
+            .hero-title {
                 font-size: 2rem;
             }
 
             .hero p {
                 font-size: 1.2rem;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem;
             }
 
             nav ul {
@@ -359,19 +492,51 @@
             .products-grid {
                 grid-template-columns: 1fr;
             }
+
+            .about-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+
+            header {
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.75rem;
+            }
+
+            .hero-title {
+                font-size: 1.75rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="season-banner">
+    <a href="#home" class="skip-link">Skip to main content</a>
+
+    <div class="season-banner" role="banner">
         Spring 2026 - Fall 2026 Lineup Now Available
     </div>
 
     <header>
-        <img src="Raydiant_Header_1600x525_Saturated.png" alt="Raydiant Ferments Logo" class="logo">
+        <h1 class="sr-only">Raydiant Ferments - Small Batch Fermented Foods</h1>
     </header>
 
-    <nav>
+    <nav aria-label="Main navigation">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#products">Products</a></li>
@@ -381,8 +546,9 @@
         </ul>
     </nav>
 
+    <main>
     <div class="hero" id="home">
-        <h1>Raydiant Ferments</h1>
+        <p class="hero-title" aria-hidden="true">Raydiant Ferments</p>
         <p>Serving Missoula Since 2025!</p>
         <a href="#contact" class="cta-button">Order Custom Batch</a>
     </div>
@@ -558,22 +724,22 @@
             <div class="contact-form">
                 <form id="contactForm" action="https://formspree.io/f/mzdblkol" method="POST">
                     <div class="form-group">
-                        <label for="name">Name *</label>
-                        <input type="text" id="name" name="name" required>
+                        <label for="name">Name <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                        <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your full name">
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="email">Email <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                        <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com">
                     </div>
 
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone">
+                        <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(optional)">
                     </div>
 
                     <div class="form-group">
-                        <label for="inquiry-type">Inquiry Type *</label>
+                        <label for="inquiry-type">Inquiry Type <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
                         <select id="inquiry-type" name="inquiry-type" required>
                             <option value="">Select an option</option>
                             <option value="custom-order">Custom Order</option>
@@ -584,21 +750,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea id="message" name="message" required></textarea>
+                        <label for="message">Message <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                        <textarea id="message" name="message" required placeholder="Tell us what you're looking for..."></textarea>
                     </div>
 
                     <button type="submit" class="submit-button">Send Message</button>
+                    <div id="form-status" class="form-status" role="alert" aria-live="polite"></div>
                 </form>
 
                 <div class="social-links">
-                    <a href="https://www.instagram.com/raydiant_ferments/" target="_blank">📷 Instagram</a>
-                    <a href="https://facebook.com/raydiantferments" target="_blank">📘 Facebook</a>
-                    <a href="mailto:hello@raydiant-ferments.com">✉️ Email</a>
+                    <a href="https://www.instagram.com/raydiant_ferments/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">Instagram</a>
+                    <a href="https://facebook.com/raydiantferments" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook">Facebook</a>
+                    <a href="mailto:hello@raydiant-ferments.com" aria-label="Send us an email">Email</a>
                 </div>
             </div>
         </section>
     </div>
+    </main>
 
     <footer>
         <p>&copy; 2026 Raydiant Ferments. All rights reserved.</p>
@@ -606,8 +774,7 @@
     </footer>
 
     <script>
-        
-
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -620,6 +787,63 @@
                 }
             });
         });
+
+        // Form submission with feedback
+        const form = document.getElementById('contactForm');
+        const statusEl = document.getElementById('form-status');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const submitBtn = form.querySelector('.submit-button');
+            const originalText = submitBtn.textContent;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            statusEl.className = 'form-status';
+            statusEl.textContent = '';
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(function (response) {
+                if (response.ok) {
+                    statusEl.className = 'form-status success';
+                    statusEl.textContent = 'Message sent successfully! We will get back to you soon.';
+                    form.reset();
+                } else {
+                    statusEl.className = 'form-status error';
+                    statusEl.textContent = 'Something went wrong. Please try again or email us directly.';
+                }
+            })
+            .catch(function () {
+                statusEl.className = 'form-status error';
+                statusEl.textContent = 'Network error. Please check your connection and try again.';
+            })
+            .finally(function () {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
+        });
     </script>
+
+    <!-- Analytics: Uncomment ONE of the options below after signing up for a service.
+
+    Option 1: Plausible Analytics (privacy-friendly, cookie-free, ~1KB)
+    Sign up at https://plausible.io then uncomment:
+    <script defer data-domain="raydiant-ferments.com" src="https://plausible.io/js/script.js"></script>
+
+    Option 2: Google Analytics 4
+    Sign up at https://analytics.google.com then replace G-XXXXXXXXXX with your ID:
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('consent', 'default', { analytics_storage: 'denied' });
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
 </body>
 </html>
