@@ -12,16 +12,20 @@
     <meta property="og:url" content="https://raydiant-ferments.com/">
     <meta property="og:title" content="Raydiant Ferments - Small Batch Fermented Foods | Missoula, MT">
     <meta property="og:description" content="Small-batch, naturally fermented foods crafted weekly in Missoula, Montana. Sauerkraut, kimchi, pickles, kombucha, kefir, hot sauce, and more.">
-    <meta property="og:image" content="https://raydiant-ferments.com/Raydiant_Ferments_Logo_400DPI.png">
+    <meta property="og:image" content="https://raydiant-ferments.com/raydiant-ferments-logo-social.jpg">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Raydiant Ferments - Small Batch Fermented Foods">
     <meta name="twitter:description" content="Small-batch, naturally fermented foods crafted weekly in Missoula, Montana.">
-    <meta name="twitter:image" content="https://raydiant-ferments.com/Raydiant_Ferments_Logo_400DPI.png">
+    <meta name="twitter:image" content="https://raydiant-ferments.com/raydiant-ferments-logo-social.jpg">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://raydiant-ferments.com/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
     <!-- Structured Data (Local Business) -->
     <script type="application/ld+json">
@@ -62,7 +66,11 @@
 
         header {
             background-color: #e8e4d8;
-            background-image: url('raydiant ferments mountains.png');
+            background-image: url('raydiant-ferments-mountains.jpg');
+            background-image: image-set(
+                url('raydiant-ferments-mountains.webp') type('image/webp'),
+                url('raydiant-ferments-mountains.jpg') type('image/jpeg')
+            );
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -819,5 +827,23 @@
             });
         });
     </script>
+
+    <!-- Analytics: Uncomment ONE of the options below after signing up for a service.
+
+    Option 1: Plausible Analytics (privacy-friendly, cookie-free, ~1KB)
+    Sign up at https://plausible.io then uncomment:
+    <script defer data-domain="raydiant-ferments.com" src="https://plausible.io/js/script.js"></script>
+
+    Option 2: Google Analytics 4
+    Sign up at https://analytics.google.com then replace G-XXXXXXXXXX with your ID:
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('consent', 'default', { analytics_storage: 'denied' });
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    -->
 </body>
 </html>
