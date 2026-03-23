@@ -27,6 +27,11 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
+    <!-- Fonts: Young Serif (headings) + Source Serif 4 (body) + DM Sans (nav/ui) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400;1,8..60,600&family=Young+Serif&display=swap" rel="stylesheet">
+
     <!-- Structured Data (Local Business) -->
     <script type="application/ld+json">
     {
@@ -51,6 +56,65 @@
     }
     </script>
     <style>
+        /* =============================================
+           COLOR SYSTEM — all colors as CSS variables
+           ============================================= */
+        :root {
+            /* Primary palette */
+            --ink: #1a2e1a;              /* deepest green — primary text */
+            --forest: #2c3e2c;           /* dark green — nav, footer, headings */
+            --moss: #4a6741;             /* mid green — secondary elements */
+            --sage: #7d8c6e;             /* muted sage — tertiary, borders */
+
+            /* Warm neutrals */
+            --cream: #f4eed8;            /* warm cream — main background */
+            --parchment: #ebe3cb;        /* deeper cream — card backgrounds */
+            --linen: #faf6ee;            /* lightest — subtle contrast areas */
+            --wheat: #d4c5a0;            /* warm tan — borders, dividers */
+            --bark: #3d2b1f;             /* dark brown — warm alternative to black */
+
+            /* Accent colors */
+            --pepper: #bf3a2b;           /* Fresno pepper red — primary accent */
+            --pepper-light: #d4564a;     /* lighter pepper for hovers */
+            --huckleberry: #6b3a5c;      /* huckleberry purple — secondary accent */
+            --clay: #c17a3a;             /* warm amber — tertiary accent */
+
+            /* Functional */
+            --text-body: #3a3a32;        /* warm dark for body text (not pure gray) */
+            --text-muted: #6b6455;       /* muted warm gray */
+            --border: #d5cbaf;           /* warm border color */
+            --focus-ring: var(--pepper); /* accessibility focus color */
+            --success-bg: #e8f0e4;
+            --success-text: var(--moss);
+            --success-border: var(--sage);
+            --error-bg: #f5e0dd;
+            --error-text: #8b2020;
+            --error-border: var(--pepper);
+        }
+
+        /* =============================================
+           TEXTURE — CSS-based paper/linen grain
+           ============================================= */
+
+        /* Subtle noise texture as inline SVG — lightweight, no HTTP request */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* =============================================
+           RESET & BASE TYPOGRAPHY
+           ============================================= */
         * {
             margin: 0;
             padding: 0;
@@ -58,14 +122,26 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            color: #2d4a2b;
-            background-color: #faf8f3;
-            line-height: 1.6;
+            font-family: 'Source Serif 4', 'Georgia', serif;
+            color: var(--text-body);
+            background-color: var(--cream);
+            line-height: 1.7;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
         }
 
+        h1, h2, h3 {
+            font-family: 'Young Serif', 'Georgia', serif;
+            color: var(--ink);
+            font-weight: 400; /* Young Serif is naturally bold-looking */
+            letter-spacing: -0.01em;
+        }
+
+        /* =============================================
+           HEADER / BANNER IMAGE
+           ============================================= */
         header {
-            background-color: #e8e4d8;
+            background-color: var(--parchment);
             background-image: url('raydiant-ferments-mountains.jpg');
             background-image: image-set(
                 url('raydiant-ferments-mountains.webp') type('image/webp'),
@@ -80,13 +156,16 @@
             min-height: 420px;
         }
 
+        /* =============================================
+           NAVIGATION
+           ============================================= */
         nav {
-            background-color: #2d4a2b;
+            background-color: var(--forest);
             padding: 1rem;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.15);
         }
 
         nav ul {
@@ -98,54 +177,77 @@
         }
 
         nav a {
-            color: #faf8f3;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--linen);
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
         }
 
         nav a:hover {
-            color: #f4a460;
+            color: var(--clay);
         }
 
+        /* =============================================
+           HERO SECTION
+           ============================================= */
         .hero {
-            background: linear-gradient(135deg, rgba(45, 74, 43, 0.9), rgba(107, 142, 35, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%236b8e23" width="1200" height="400"/></svg>');
-            color: #faf8f3;
+            background-color: var(--forest);
+            /* Subtle linen texture overlay */
+            background-image:
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--linen);
             padding: 5rem 2rem;
             text-align: center;
         }
 
         .hero-title {
-            font-size: 3rem;
-            font-weight: bold;
+            font-family: 'Young Serif', 'Georgia', serif;
+            font-size: 3.2rem;
+            font-weight: 400;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: var(--linen);
+            text-shadow: none;
+            letter-spacing: -0.02em;
         }
 
         .hero p {
-            font-size: 1.5rem;
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.35rem;
             font-style: italic;
             margin-bottom: 2rem;
+            color: var(--wheat);
         }
 
         .cta-button {
             display: inline-block;
-            background-color: #f4a460;
-            color: #2d4a2b;
-            padding: 1rem 2rem;
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--pepper);
+            color: var(--linen);
+            padding: 0.9rem 2rem;
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border: 2px solid var(--pepper);
+            transition: background-color 0.2s, color 0.2s;
         }
 
         .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: transparent;
+            color: var(--pepper-light);
+            border-color: var(--pepper-light);
+            transform: none;
+            box-shadow: none;
         }
 
+        /* =============================================
+           CONTAINER & SECTIONS
+           ============================================= */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -158,7 +260,7 @@
 
         h2 {
             font-size: 2.5rem;
-            color: #2d4a2b;
+            color: var(--ink);
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
@@ -171,11 +273,14 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background-color: #f4a460;
+            width: 60px;
+            height: 2px;
+            background-color: var(--pepper);
         }
 
+        /* =============================================
+           PRODUCT CARDS
+           ============================================= */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -184,88 +289,104 @@
         }
 
         .product-card {
-            background: white;
-            border-radius: 10px;
+            background: var(--linen);
             padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #6b8e23;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s;
+            border-top: 3px solid var(--moss);
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            border-color: var(--sage);
+            transform: none;
+            box-shadow: none;
         }
 
         .product-card h3 {
-            color: #2d4a2b;
+            color: var(--ink);
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
             line-height: 1.3;
         }
 
         .product-size {
-            color: #f4a460;
-            font-weight: bold;
-            font-size: 0.95rem;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--pepper);
+            font-weight: 500;
+            font-size: 0.85rem;
             margin-bottom: 1rem;
             display: block;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
 
         .product-card p {
-            color: #555;
+            color: var(--text-body);
             margin-bottom: 1rem;
             font-size: 1rem;
         }
 
         .flavor-profile {
-            background-color: #f9f6f0;
+            background-color: var(--parchment);
             padding: 1rem;
-            border-radius: 5px;
             margin: 1rem 0;
-            border-left: 3px solid #6b8e23;
+            border-left: 3px solid var(--clay);
+            border-radius: 0;
         }
 
         .flavor-profile strong {
-            color: #2d4a2b;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--bark);
             display: block;
             margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
 
         .flavor-notes {
             font-style: italic;
-            color: #6b8e23;
+            color: var(--huckleberry);
             font-size: 0.95rem;
             margin-top: 0.5rem;
         }
 
         .use-cases {
             font-size: 0.9rem;
-            color: #666;
+            color: var(--text-muted);
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid #e0e0e0;
+            border-top: 1px solid var(--border);
         }
 
         .use-cases strong {
-            color: #2d4a2b;
+            color: var(--bark);
         }
 
+        /* =============================================
+           ABOUT / OUR STORY
+           ============================================= */
         .about-content {
-            background: white;
+            background: var(--linen);
             padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
             max-width: 800px;
             margin: 0 auto;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .about-content p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: #555;
+            color: var(--text-body);
         }
 
+        /* =============================================
+           LOCATIONS / WHERE TO BUY
+           ============================================= */
         .locations-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -274,30 +395,35 @@
         }
 
         .location-card {
-            background: white;
+            background: var(--linen);
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #f4a460;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--huckleberry);
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .location-card h3 {
-            color: #2d4a2b;
+            color: var(--ink);
             margin-bottom: 1rem;
         }
 
         .location-card p {
-            color: #555;
+            color: var(--text-body);
             margin-bottom: 0.5rem;
         }
 
+        /* =============================================
+           CONTACT FORM
+           ============================================= */
         .contact-form {
-            background: white;
+            background: var(--linen);
             padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid var(--border);
             max-width: 600px;
             margin: 0 auto;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .form-group {
@@ -307,8 +433,11 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #2d4a2b;
-            font-weight: bold;
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
         }
 
         .form-group input,
@@ -316,10 +445,12 @@
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
+            border: 1px solid var(--border);
+            background-color: var(--cream);
+            font-family: 'Source Serif 4', serif;
             font-size: 1rem;
+            color: var(--text-body);
+            border-radius: 0;
         }
 
         .form-group textarea {
@@ -331,24 +462,29 @@
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #6b8e23;
+            border-color: var(--moss);
+            box-shadow: 0 0 0 2px rgba(74, 103, 65, 0.15);
         }
 
         .submit-button {
-            background-color: #2d4a2b;
-            color: white;
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--forest);
+            color: var(--linen);
             padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            border: 2px solid var(--forest);
+            font-size: 0.95rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.2s, color 0.2s;
             width: 100%;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            border-radius: 0;
         }
 
         .submit-button:hover {
-            background-color: #6b8e23;
+            background-color: transparent;
+            color: var(--forest);
         }
 
         .social-links {
@@ -359,34 +495,53 @@
         }
 
         .social-links a {
-            color: #2d4a2b;
-            font-size: 1.2rem;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--moss);
+            font-size: 0.95rem;
             text-decoration: none;
-            transition: color 0.3s;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+            border-bottom: 1px solid transparent;
         }
 
         .social-links a:hover {
-            color: #f4a460;
+            color: var(--pepper);
+            border-bottom-color: var(--pepper);
         }
 
+        /* =============================================
+           FOOTER
+           ============================================= */
         footer {
-            background-color: #2d4a2b;
-            color: #faf8f3;
+            background-color: var(--forest);
+            color: var(--wheat);
             text-align: center;
             padding: 2rem;
             margin-top: 4rem;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
         }
 
+        /* =============================================
+           SEASON BANNER
+           ============================================= */
         .season-banner {
-            background-color: #6b8e23;
-            color: white;
+            background-color: var(--bark);
+            color: var(--wheat);
             text-align: center;
-            padding: 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
+            padding: 0.75rem 1rem;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
         }
 
-        /* Visually hidden but accessible to screen readers */
+        /* =============================================
+           ACCESSIBILITY
+           ============================================= */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -399,13 +554,12 @@
             border: 0;
         }
 
-        /* Skip navigation link for keyboard users */
         .skip-link {
             position: absolute;
             top: -100%;
             left: 0;
-            background: #2d4a2b;
-            color: #faf8f3;
+            background: var(--forest);
+            color: var(--linen);
             padding: 0.5rem 1rem;
             z-index: 200;
             text-decoration: none;
@@ -416,40 +570,43 @@
             top: 0;
         }
 
-        /* Focus styles for keyboard navigation */
         a:focus-visible,
         button:focus-visible,
         input:focus-visible,
         textarea:focus-visible,
         select:focus-visible {
-            outline: 3px solid #f4a460;
+            outline: 3px solid var(--focus-ring);
             outline-offset: 2px;
         }
 
-        /* Form status messages */
+        /* =============================================
+           FORM STATUS
+           ============================================= */
         .form-status {
             margin-top: 1rem;
             padding: 0;
             text-align: center;
-            border-radius: 5px;
             font-weight: bold;
             display: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            border-radius: 0;
         }
 
         .form-status.success {
             display: block;
             padding: 1rem;
-            background-color: #e8f5e9;
-            color: #2d4a2b;
-            border: 1px solid #6b8e23;
+            background-color: var(--success-bg);
+            color: var(--success-text);
+            border: 1px solid var(--success-border);
         }
 
         .form-status.error {
             display: block;
             padding: 1rem;
-            background-color: #fce4ec;
-            color: #c62828;
-            border: 1px solid #c62828;
+            background-color: var(--error-bg);
+            color: var(--error-text);
+            border: 1px solid var(--error-border);
         }
 
         .submit-button:disabled {
@@ -457,7 +614,9 @@
             cursor: not-allowed;
         }
 
-        /* Tablet breakpoint */
+        /* =============================================
+           RESPONSIVE — Tablet
+           ============================================= */
         @media (max-width: 1024px) {
             .container {
                 padding: 3rem 1.5rem;
@@ -468,13 +627,16 @@
             }
         }
 
+        /* =============================================
+           RESPONSIVE — Mobile
+           ============================================= */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.15rem;
             }
 
             .hero {
@@ -714,7 +876,7 @@
                 <div class="location-card">
                     <h3>Custom Orders & Wholesale</h3>
                     <p>Need ferments for a special event, restaurant, or want to stock up? We take custom orders and offer wholesale pricing for restaurants and retailers.</p>
-                    <p><a href="#contact" style="color: #6b8e23; font-weight: bold;">Contact us</a> to discuss your needs.</p>
+                    <p><a href="#contact" style="color: var(--moss); font-weight: bold;">Contact us</a> to discuss your needs.</p>
                 </div>
             </div>
         </section>
