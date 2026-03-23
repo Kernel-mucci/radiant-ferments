@@ -192,31 +192,61 @@
         }
 
         /* =============================================
-           HERO SECTION
+           HERO SECTION — editorial spread layout
            ============================================= */
         .hero {
             background-color: var(--forest);
-            /* Subtle linen texture overlay */
             background-image:
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             color: var(--linen);
-            padding: 5rem 2rem;
+            padding: 4.5rem 2rem;
+        }
+
+        .hero-inner {
+            max-width: 700px;
+            margin: 0 auto;
             text-align: center;
+        }
+
+        .hero-tagline {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 1rem;
         }
 
         .hero-title {
             font-family: 'Young Serif', 'Georgia', serif;
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 400;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
             color: var(--linen);
             text-shadow: none;
             letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero-rule {
+            width: 50px;
+            height: 2px;
+            background-color: var(--pepper);
+            margin: 1.5rem auto;
+        }
+
+        .hero-subtitle {
+            font-family: 'Source Serif 4', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            color: var(--wheat);
+            line-height: 1.7;
         }
 
         .hero p {
             font-family: 'Source Serif 4', serif;
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             font-style: italic;
             margin-bottom: 2rem;
             color: var(--wheat);
@@ -243,6 +273,16 @@
             border-color: var(--pepper-light);
             transform: none;
             box-shadow: none;
+        }
+
+        /* Section intro text */
+        .section-intro {
+            text-align: center;
+            max-width: 600px;
+            margin: -0.5rem auto 0;
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-style: italic;
         }
 
         /* =============================================
@@ -279,12 +319,12 @@
         }
 
         /* =============================================
-           PRODUCT CARDS
+           PRODUCT CARDS — asymmetric grid
            ============================================= */
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
             margin-top: 3rem;
         }
 
@@ -294,14 +334,84 @@
             border: 1px solid var(--border);
             transition: border-color 0.2s;
             border-top: 3px solid var(--moss);
-            border-radius: 0;
-            box-shadow: none;
         }
 
         .product-card:hover {
             border-color: var(--sage);
-            transform: none;
-            box-shadow: none;
+        }
+
+        /* Featured products span full width with side-by-side layout */
+        .product-featured {
+            grid-column: 1 / -1;
+            border-top-color: var(--huckleberry);
+            background-color: var(--parchment);
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .product-featured-inner {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 280px;
+        }
+
+        .product-featured-inner.reverse {
+            grid-template-columns: 1fr 280px;
+        }
+
+        .product-featured-inner.reverse .product-photo-placeholder {
+            order: 2;
+        }
+
+        .product-featured-text {
+            padding: 2rem 2.5rem;
+        }
+
+        /* Photo placeholder areas */
+        .product-photo-placeholder,
+        .about-photo-placeholder,
+        .location-photo-placeholder {
+            background-color: var(--wheat);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-photo-placeholder::before,
+        .about-photo-placeholder::before,
+        .location-photo-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            /* Diagonal lines pattern to indicate placeholder */
+            background-image: repeating-linear-gradient(
+                -45deg,
+                transparent,
+                transparent 8px,
+                rgba(0,0,0,0.03) 8px,
+                rgba(0,0,0,0.03) 9px
+            );
+        }
+
+        .product-photo-placeholder span,
+        .about-photo-placeholder span,
+        .location-photo-placeholder span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            z-index: 1;
+            background: var(--parchment);
+            padding: 0.4rem 0.8rem;
+        }
+
+        /* Drink cards: visually lighter */
+        .product-drink {
+            border-top-color: var(--clay);
         }
 
         .product-card h3 {
@@ -324,93 +434,171 @@
 
         .product-card p {
             color: var(--text-body);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
             font-size: 1rem;
-        }
-
-        .flavor-profile {
-            background-color: var(--parchment);
-            padding: 1rem;
-            margin: 1rem 0;
-            border-left: 3px solid var(--clay);
-            border-radius: 0;
-        }
-
-        .flavor-profile strong {
-            font-family: 'DM Sans', sans-serif;
-            color: var(--bark);
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
         }
 
         .flavor-notes {
             font-style: italic;
             color: var(--huckleberry);
             font-size: 0.95rem;
-            margin-top: 0.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .use-cases {
             font-size: 0.9rem;
             color: var(--text-muted);
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
-        }
-
-        .use-cases strong {
-            color: var(--bark);
         }
 
         /* =============================================
-           ABOUT / OUR STORY
+           ABOUT / OUR STORY — editorial layout
            ============================================= */
-        .about-content {
-            background: var(--linen);
-            padding: 3rem;
-            border: 1px solid var(--border);
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 0;
-            box-shadow: none;
+        .about-section {
+            background-color: var(--parchment);
+            margin-left: -2rem;
+            margin-right: -2rem;
+            padding: 4rem 2rem;
         }
 
-        .about-content p {
+        .about-layout {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-lead {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-lead p {
+            font-family: 'Young Serif', 'Georgia', serif;
+            font-size: 1.5rem;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        .about-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-col p {
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-body);
+            line-height: 1.8;
+        }
+
+        .pull-quote {
+            font-family: 'Young Serif', 'Georgia', serif;
+            font-size: 1.6rem;
+            color: var(--pepper);
+            border-left: 3px solid var(--pepper);
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            margin: 0 0 2rem 0;
+            line-height: 1.4;
+        }
+
+        .about-photo-placeholder {
+            min-height: 250px;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border);
+        }
+
+        .about-closing {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-closing p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
             color: var(--text-body);
+            line-height: 1.8;
         }
 
         /* =============================================
-           LOCATIONS / WHERE TO BUY
+           LOCATIONS / FIND US — casual market feel
            ============================================= */
-        .locations-grid {
+        .locations-layout {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1.2fr 1fr;
             gap: 2rem;
             margin-top: 3rem;
+            align-items: start;
+        }
+
+        .location-primary {
+            background: var(--linen);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--pepper);
+        }
+
+        .location-primary h3 {
+            font-size: 1.6rem;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .location-detail {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            color: var(--moss);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .location-primary p {
+            color: var(--text-body);
+            margin-bottom: 1rem;
+        }
+
+        .location-photo-placeholder {
+            min-height: 180px;
+            border: 1px solid var(--border);
+        }
+
+        .locations-secondary {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .location-card {
             background: var(--linen);
-            padding: 2rem;
+            padding: 1.75rem;
             border: 1px solid var(--border);
-            border-left: 4px solid var(--huckleberry);
-            border-radius: 0;
-            box-shadow: none;
+            border-left: 3px solid var(--huckleberry);
         }
 
         .location-card h3 {
             color: var(--ink);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.15rem;
         }
 
         .location-card p {
             color: var(--text-body);
             margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .location-card a {
+            color: var(--moss);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid var(--moss);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .location-card a:hover {
+            color: var(--pepper);
+            border-bottom-color: var(--pepper);
         }
 
         /* =============================================
@@ -511,17 +699,59 @@
         }
 
         /* =============================================
-           FOOTER
+           FOOTER — personal sign-off
            ============================================= */
         footer {
             background-color: var(--forest);
             color: var(--wheat);
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
             margin-top: 4rem;
             font-family: 'DM Sans', sans-serif;
             font-size: 0.9rem;
             letter-spacing: 0.02em;
+        }
+
+        .footer-inner {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .footer-signoff {
+            font-family: 'Source Serif 4', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--linen);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-rule {
+            width: 30px;
+            height: 2px;
+            background-color: var(--sage);
+            margin: 0 auto 1.25rem;
+        }
+
+        .footer-details {
+            margin-bottom: 0.25rem;
+            color: var(--sage);
+        }
+
+        .footer-details a {
+            color: var(--wheat);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sage);
+            transition: color 0.2s;
+        }
+
+        .footer-details a:hover {
+            color: var(--linen);
+        }
+
+        .footer-copy {
+            margin-top: 1rem;
+            color: var(--sage);
+            font-size: 0.8rem;
         }
 
         /* =============================================
@@ -623,7 +853,20 @@
             }
 
             .products-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .product-featured-inner,
+            .product-featured-inner.reverse {
+                grid-template-columns: 220px 1fr;
+            }
+
+            .about-columns {
+                gap: 2rem;
+            }
+
+            .locations-layout {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
@@ -632,11 +875,11 @@
            ============================================= */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.2rem;
+                font-size: 2.4rem;
             }
 
-            .hero p {
-                font-size: 1.15rem;
+            .hero-subtitle {
+                font-size: 1.05rem;
             }
 
             .hero {
@@ -651,12 +894,51 @@
                 font-size: 2rem;
             }
 
+            /* Products: single column on mobile */
             .products-grid {
                 grid-template-columns: 1fr;
             }
 
-            .about-content {
-                padding: 2rem 1.5rem;
+            .product-featured-inner,
+            .product-featured-inner.reverse {
+                grid-template-columns: 1fr;
+            }
+
+            .product-featured-inner .product-photo-placeholder {
+                min-height: 160px;
+            }
+
+            .product-featured-inner.reverse .product-photo-placeholder {
+                order: 0;
+            }
+
+            .product-featured-text {
+                padding: 1.5rem;
+            }
+
+            /* About: single column on mobile */
+            .about-columns {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .about-section {
+                margin-left: -1.5rem;
+                margin-right: -1.5rem;
+                padding: 3rem 1.5rem;
+            }
+
+            .about-lead p {
+                font-size: 1.25rem;
+            }
+
+            .pull-quote {
+                font-size: 1.3rem;
+            }
+
+            /* Locations: stack on mobile */
+            .locations-layout {
+                grid-template-columns: 1fr;
             }
 
             .contact-form {
@@ -676,7 +958,7 @@
             }
 
             .hero-title {
-                font-size: 1.75rem;
+                font-size: 1.9rem;
             }
 
             .social-links {
@@ -691,7 +973,7 @@
     <a href="#home" class="skip-link">Skip to main content</a>
 
     <div class="season-banner" role="banner">
-        Spring 2026 - Fall 2026 Lineup Now Available
+        Fresh lineup for market season 2026 &mdash; see you at the booth
     </div>
 
     <header>
@@ -710,173 +992,165 @@
 
     <main>
     <div class="hero" id="home">
-        <p class="hero-title" aria-hidden="true">Raydiant Ferments</p>
-        <p>Serving Missoula Since 2025!</p>
-        <a href="#contact" class="cta-button">Order Custom Batch</a>
+        <div class="hero-inner">
+            <p class="hero-tagline">Small-batched weekly in Missoula, Montana</p>
+            <p class="hero-title" aria-hidden="true">Raydiant Ferments</p>
+            <div class="hero-rule"></div>
+            <p class="hero-subtitle">Fermented foods made with intention.<br>Sauerkraut, kimchi, pickles, hot sauce, kombucha &amp; more.</p>
+            <a href="#contact" class="cta-button">Order a Custom Batch</a>
+        </div>
     </div>
 
     <div class="container">
         <section id="products">
-            <h2>Spring 2026 - Fall 2026 Offerings</h2>
+            <h2>What We Make</h2>
+            <p class="section-intro">Everything is small-batched, fermentation-first, and made to be eaten with real food &mdash; not treated as an afterthought. Here&rsquo;s what we&rsquo;re bringing to market this season.</p>
             <div class="products-grid">
-                
+
+                <!-- Featured: spans full width -->
+                <div class="product-card product-featured">
+                    <div class="product-featured-inner">
+                        <div class="product-photo-placeholder" aria-hidden="true">
+                            <span>photo coming soon</span>
+                        </div>
+                        <div class="product-featured-text">
+                            <h3>Huckleberry Red Cabbage Sauerkraut</h3>
+                            <span class="product-size">16 oz jar</span>
+                            <p>This is the one people come back for. Red cabbage, carrot, local huckleberries, and caraway &mdash; deep fermentation with a little berry sweetness and warming spice. It&rsquo;s got that striking purple color and it goes on everything from brats to grain bowls.</p>
+                            <div class="flavor-notes">Earthy, tangy, a little sweet</div>
+                            <p class="use-cases">Great with brats, pork, duck, grain bowls, pierogi, or just as a probiotic side.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured: spans full width -->
+                <div class="product-card product-featured">
+                    <div class="product-featured-inner reverse">
+                        <div class="product-photo-placeholder" aria-hidden="true">
+                            <span>photo coming soon</span>
+                        </div>
+                        <div class="product-featured-text">
+                            <h3>Montana Kimchi</h3>
+                            <span class="product-size">16 oz jar</span>
+                            <p>Our everyday kimchi. Bold umami and heat without overwhelming funk &mdash; built so you actually use the whole jar. Napa cabbage, daikon, garlic, ginger, chili paste.</p>
+                            <div class="flavor-notes">Savory, balanced heat, deeply fermented</div>
+                            <p class="use-cases">Put it on rice bowls, eggs, ramen, fried rice, grilled meats &mdash; honestly, whatever you want.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard cards -->
                 <div class="product-card">
                     <h3>Chicago-Style Fermented Giardiniera</h3>
                     <span class="product-size">12 oz jar</span>
-                    <p>A Midwest-rooted, naturally fermented giardiniera designed to land exactly where it should—on Italian beefs, sausages, and sandwiches. Fermentation-forward and oil-free to preserve brightness, crunch, and versatility.</p>
-                    <div class="flavor-profile">
-                        <strong>Flavor Profile:</strong>
-                        Cauliflower, carrot, celery, red bell pepper, jalapeño, serrano, garlic, oregano, bay
-                        <div class="flavor-notes">Bright acidity • crunchy • assertive heat</div>
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Italian beef, brats, burgers, antipasto, chopped relish, pizza topping
-                    </div>
+                    <p>The real deal &mdash; fermented, not just pickled. Oil-free so it stays bright and crunchy. Cauliflower, carrot, celery, red bell pepper, jalapeño, serrano, garlic, oregano, bay.</p>
+                    <div class="flavor-notes">Bright, crunchy, assertive heat</div>
+                    <p class="use-cases">Italian beef, brats, burgers, antipasto, pizza &mdash; anywhere you want crunch and fire.</p>
                 </div>
 
                 <div class="product-card">
-                    <h3>Citrus & Herb Fermented Cucumbers + Onion</h3>
+                    <h3>Citrus &amp; Herb Fermented Cucumbers + Onion</h3>
                     <span class="product-size">16 oz jar</span>
-                    <p>A layered, aromatic pickle emphasizing balance over sharp acidity. Citrus peel oils and herbs elevate the brine without overpowering the cucumber.</p>
-                    <div class="flavor-profile">
-                        <strong>Flavor Profile:</strong>
-                        Persian cucumbers, yellow onion, lemon/lime/orange peel, dill, thyme, bay, kaffir lime leaf, coriander
-                        <div class="flavor-notes">Fresh • herbal • lightly citrusy</div>
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Charcuterie, grilled meats, cocktails, straight snacking
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <h3>Huckleberry Red Cabbage Sauerkraut</h3>
-                    <span class="product-size">16 oz jar</span>
-                    <p>A Montana-driven kraut that balances deep fermentation with subtle berry sweetness and warming spice. Visually striking, cleanly acidic, and food-forward.</p>
-                    <div class="flavor-profile">
-                        <strong>Flavor Profile:</strong>
-                        Red cabbage, carrot, huckleberry, caraway
-                        <div class="flavor-notes">Earthy • tangy • lightly sweet</div>
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Brats, pork, duck, grain bowls, pierogi, probiotic side
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <h3>Montana Kimchi</h3>
-                    <span class="product-size">16 oz jar</span>
-                    <p>A restrained, everyday kimchi built for generous use. Bold umami and heat without overwhelming funk.</p>
-                    <div class="flavor-profile">
-                        <strong>Flavor Profile:</strong>
-                        Napa cabbage, daikon, garlic, ginger, chili paste
-                        <div class="flavor-notes">Savory • balanced heat • deeply fermented</div>
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Rice bowls, eggs, ramen, fried rice, grilled meats
-                    </div>
+                    <p>Not your average pickle. Persian cucumbers and yellow onion with lemon, lime, and orange peel, plus dill, thyme, bay, kaffir lime leaf, and coriander. Aromatic and layered.</p>
+                    <div class="flavor-notes">Fresh, herbal, lightly citrusy</div>
+                    <p class="use-cases">Charcuterie boards, grilled meats, cocktail garnish, or straight out of the jar.</p>
                 </div>
 
                 <div class="product-card">
                     <h3>Fresno Fermented Hot Sauce</h3>
                     <span class="product-size">8 oz bottle</span>
-                    <p>A clean, pepper-forward fermented hot sauce highlighting Fresno chilies' natural sweetness and moderate heat. Designed for daily use rather than novelty heat chasing.</p>
-                    <div class="flavor-profile">
-                        <strong>Flavor Profile:</strong>
-                        Fresno peppers, garlic, ginger, fermented depth
-                        <div class="flavor-notes">Bright • slightly sweet • medium heat</div>
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Eggs, tacos, roasted vegetables, grain bowls, marinades
-                    </div>
+                    <p>Pepper-forward with natural Fresno sweetness and medium heat. Garlic, ginger, and fermented depth. Made for daily use, not novelty.</p>
+                    <div class="flavor-notes">Bright, slightly sweet, medium heat</div>
+                    <p class="use-cases">Eggs, tacos, roasted veg, grain bowls, marinades &mdash; the bottle that lives on your table.</p>
                 </div>
 
                 <div class="product-card">
                     <h3>Whole-Seed Fermented Mustard</h3>
                     <span class="product-size">8 oz jar</span>
-                    <p>A slow-fermented mustard built on texture and complexity rather than sharp vinegar bite. Whole seeds create pop and body, while fermentation softens bitterness and deepens savoriness.</p>
-                    <div class="flavor-profile">
-                        <strong>Flavor Profile:</strong>
-                        Yellow & black mustard seed, garlic, turmeric, light acidity
-                        <div class="flavor-notes">Earthy • savory • gently pungent</div>
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Sausages, charcuterie, vinaigrettes, glazes, sandwiches
-                    </div>
+                    <p>Slow-fermented with whole yellow and black mustard seeds. Pop and body instead of sharp vinegar bite. Garlic, turmeric, light acidity.</p>
+                    <div class="flavor-notes">Earthy, savory, gently pungent</div>
+                    <p class="use-cases">Sausages, charcuterie, vinaigrettes, glazes, sandwiches.</p>
                 </div>
 
-                <div class="product-card">
+                <!-- Drinks row: side by side -->
+                <div class="product-card product-drink">
                     <h3>Cultured Milk Kefir</h3>
-                    <span class="product-size">16 oz bottle (Plain base / Rotating flavors)</span>
-                    <p>A living, probiotic-rich cultured dairy drink with a clean, lightly tangy finish. Light effervescence and minimal sweetness allow for both sipping and culinary use.</p>
-                    <div class="flavor-profile">
-                        <strong>Flavor Profile:</strong>
-                        Fresh dairy tang • lightly effervescent • clean finish
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Straight drinking, smoothies, dressings, marinades, fermentation starter
-                    </div>
+                    <span class="product-size">16 oz &middot; Plain base &amp; rotating flavors</span>
+                    <p>Living, probiotic-rich cultured dairy. Clean tang, light fizz, minimal sweetness. Sip it straight or use it in smoothies, dressings, and marinades.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card product-drink">
                     <h3>Small-Batch Kombucha</h3>
-                    <span class="product-size">16 oz bottle (Rotating flavors)</span>
-                    <p>Naturally fermented kombucha brewed dry and tea-forward, emphasizing balance over sweetness. Base profile: crisp acidity, restrained carbonation, clean finish.</p>
-                    <div class="flavor-profile">
-                        <strong>Rotational Flavors:</strong>
-                        Coffee kombucha, ginger spice, vanilla-forward, seasonal fruit or herb expressions
-                        <div class="flavor-notes">Crisp acidity • restrained carbonation • clean finish</div>
-                    </div>
-                    <div class="use-cases">
-                        <strong>Perfect for:</strong> Daily refreshment, digestive support, probiotic boost
-                    </div>
+                    <span class="product-size">16 oz &middot; Rotating flavors</span>
+                    <p>Brewed dry and tea-forward. Coffee, ginger spice, vanilla, and seasonal expressions. Crisp, restrained carbonation, clean finish. Not sweet.</p>
                 </div>
 
             </div>
         </section>
 
-        <section id="about">
+        <section id="about" class="about-section">
             <h2>Our Story</h2>
-            <div class="about-content">
-                <p>Raydiant Ferments was born at the intersection of food, science, and care for community.</p>
-                
-                <p>For over a decade, my career lived in food and beverage leadership. I have run kitchens, dining rooms, beverage programs, and teams in environments where hospitality is not a concept, it is a responsibility. Food, at its best, is nourishment, culture, and connection. It is how we take care of one another.</p>
-                
-                <p>Alongside that work, I was trained as an educator, with a background rooted in math and science. That foundation shaped how I approach food: curious, evidence-based, and deeply interested in how systems work, especially the systems inside our bodies.</p>
 
-                <p>The spark that turned those threads into Raydiant Ferments came from a life-altering experience. After a severe MRSA infection, I spent an extended period on IV antibiotics. While those treatments saved my life, they also stripped my gut of much of its microbial diversity. Recovery was not just about healing wounds. It was about rebuilding from the inside out.</p>
+            <div class="about-layout">
+                <div class="about-lead">
+                    <p>Raydiant Ferments was born at the intersection of food, science, and care for community.</p>
+                </div>
 
-                <p>Fermented foods became both a practical tool and a philosophy. I experienced firsthand how intentional fermentation could support digestion, resilience, and overall well-being. More than that, I saw how inaccessible truly alive, thoughtfully made fermented foods often were. Many were diluted into novelty products or stripped of their original purpose.</p>
+                <div class="about-columns">
+                    <div class="about-col">
+                        <p>For over a decade, my career lived in food and beverage leadership. I have run kitchens, dining rooms, beverage programs, and teams in environments where hospitality is not a concept, it is a responsibility. Food, at its best, is nourishment, culture, and connection. It is how we take care of one another.</p>
 
-                <p>Raydiant Ferments exists to change that.</p>
+                        <p>Alongside that work, I was trained as an educator, with a background rooted in math and science. That foundation shaped how I approach food: curious, evidence-based, and deeply interested in how systems work, especially the systems inside our bodies.</p>
 
-                <p>Every product is small-batched, fermentation-first, and designed to be eaten with real meals rather than treated as an afterthought. This is not about trends or gimmicks. It is about using time-tested methods, guided by modern understanding, to support gut health, flavor, and community vitality.</p>
+                        <p>The spark that turned those threads into Raydiant Ferments came from a life-altering experience. After a severe MRSA infection, I spent an extended period on IV antibiotics. While those treatments saved my life, they also stripped my gut of much of its microbial diversity. Recovery was not just about healing wounds. It was about rebuilding from the inside out.</p>
+                    </div>
 
-                <p>At its core, Raydiant Ferments is an extension of how I have always worked: help people feel better, feed them well, and leave systems stronger than you found them.</p>
+                    <div class="about-col">
+                        <blockquote class="pull-quote">
+                            Raydiant Ferments exists to change that.
+                        </blockquote>
 
-                <p>This company is for anyone who believes food should do more than fill a plate. It should help us heal, connect, and thrive.</p>
+                        <p>Fermented foods became both a practical tool and a philosophy. I experienced firsthand how intentional fermentation could support digestion, resilience, and overall well-being. More than that, I saw how inaccessible truly alive, thoughtfully made fermented foods often were. Many were diluted into novelty products or stripped of their original purpose.</p>
+
+                        <p>Every product is small-batched, fermentation-first, and designed to be eaten with real meals rather than treated as an afterthought. This is not about trends or gimmicks. It is about using time-tested methods, guided by modern understanding, to support gut health, flavor, and community vitality.</p>
+                    </div>
+                </div>
+
+                <div class="about-photo-placeholder" aria-hidden="true">
+                    <span>photo &mdash; hands at work, market morning, jars on the shelf</span>
+                </div>
+
+                <div class="about-closing">
+                    <p>At its core, Raydiant Ferments is an extension of how I have always worked: help people feel better, feed them well, and leave systems stronger than you found them.</p>
+
+                    <p>This company is for anyone who believes food should do more than fill a plate. It should help us heal, connect, and thrive.</p>
+                </div>
             </div>
         </section>
 
-        <section id="locations">
-            <h2>Where to Buy</h2>
-            <div class="locations-grid">
-                <div class="location-card">
+        <section id="locations" class="locations-section">
+            <h2>Find Us</h2>
+
+            <div class="locations-layout">
+                <div class="location-primary">
                     <h3>Missoula Farmers Market</h3>
-                    <p><strong>When:</strong> Saturdays, 8am - 1pm</p>
-                    <p><strong>Season:</strong> May - October</p>
-                    <p>Find us at our booth for the freshest selection and to chat about fermentation!</p>
+                    <p class="location-detail">Saturdays, 8am &ndash; 1pm &middot; May through October</p>
+                    <p>This is home base. Come by the booth, taste what&rsquo;s new, talk fermentation. We&rsquo;re always happy to nerd out about gut health and flavor.</p>
+                    <div class="location-photo-placeholder" aria-hidden="true">
+                        <span>photo &mdash; booth at the market, jars lined up, morning light</span>
+                    </div>
                 </div>
 
-                <div class="location-card">
-                    <h3>Local Retailers</h3>
-                    <p>We're working on partnerships with local health food stores and co-ops in the Missoula area.</p>
-                    <p>Check back for updates on where you can find our products year-round.</p>
-                </div>
+                <div class="locations-secondary">
+                    <div class="location-card">
+                        <h3>Local Retailers</h3>
+                        <p>We&rsquo;re working on partnerships with Missoula-area health food stores and co-ops. Check back for year-round availability.</p>
+                    </div>
 
-                <div class="location-card">
-                    <h3>Custom Orders & Wholesale</h3>
-                    <p>Need ferments for a special event, restaurant, or want to stock up? We take custom orders and offer wholesale pricing for restaurants and retailers.</p>
-                    <p><a href="#contact" style="color: var(--moss); font-weight: bold;">Contact us</a> to discuss your needs.</p>
+                    <div class="location-card">
+                        <h3>Custom Orders &amp; Wholesale</h3>
+                        <p>Stocking up for an event, restaurant, or just your fridge? We take custom orders and offer wholesale pricing. <a href="#contact">Drop us a line.</a></p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -931,8 +1205,13 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Raydiant Ferments. All rights reserved.</p>
-        <p>Small Batched Weekly in Missoula, Montana</p>
+        <div class="footer-inner">
+            <p class="footer-signoff">Made with salt, time, and good bacteria.</p>
+            <div class="footer-rule"></div>
+            <p class="footer-details">Raydiant Ferments &middot; Missoula, Montana</p>
+            <p class="footer-details">Brand identity by <a href="https://www.instagram.com/tobinlong/" target="_blank" rel="noopener noreferrer">Tobin Long</a></p>
+            <p class="footer-copy">&copy; 2026</p>
+        </div>
     </footer>
 
     <script>
