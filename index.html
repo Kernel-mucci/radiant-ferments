@@ -157,7 +157,7 @@
         }
 
         /* =============================================
-           NAVIGATION
+           NAVIGATION — organic hover, brand mark
            ============================================= */
         nav {
             background-color: var(--forest);
@@ -172,6 +172,7 @@
             list-style: none;
             display: flex;
             justify-content: center;
+            align-items: center;
             flex-wrap: wrap;
             gap: 2rem;
         }
@@ -185,27 +186,65 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
             transition: color 0.2s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--clay);
+            transition: width 0.3s ease;
+            /* slight organic wobble via skew */
+            transform: skewX(-8deg);
         }
 
         nav a:hover {
             color: var(--clay);
         }
 
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Dot separator between nav items */
+        .nav-dot {
+            color: var(--sage);
+            font-size: 0.5rem;
+            line-height: 1;
+            user-select: none;
+        }
+
         /* =============================================
-           HERO SECTION — editorial spread layout
+           HERO SECTION — editorial spread with photo area
            ============================================= */
         .hero {
             background-color: var(--forest);
             background-image:
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             color: var(--linen);
-            padding: 4.5rem 2rem;
+            padding: 4.5rem 2rem 0;
         }
 
         .hero-inner {
             max-width: 700px;
             margin: 0 auto;
             text-align: center;
+            padding-bottom: 3rem;
+        }
+
+        /* Landscape hero photo area below the text */
+        .hero-photo {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-photo .photo-slot {
+            aspect-ratio: 3 / 1;
+            max-height: 340px;
         }
 
         .hero-tagline {
@@ -351,15 +390,19 @@
 
         .product-featured-inner {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 300px 1fr;
             min-height: 280px;
         }
 
-        .product-featured-inner.reverse {
-            grid-template-columns: 1fr 280px;
+        .product-featured-inner .photo-slot {
+            min-height: 100%;
         }
 
-        .product-featured-inner.reverse .product-photo-placeholder {
+        .product-featured-inner.reverse {
+            grid-template-columns: 1fr 300px;
+        }
+
+        .product-featured-inner.reverse .photo-slot {
             order: 2;
         }
 
@@ -367,51 +410,131 @@
             padding: 2rem 2.5rem;
         }
 
-        /* Photo placeholder areas */
-        .product-photo-placeholder,
-        .about-photo-placeholder,
-        .location-photo-placeholder {
+        /* =============================================
+           PHOTO PLACEHOLDERS — unified system
+           Ready for real images: replace .photo-slot
+           with an <img> and remove the class.
+           ============================================= */
+        .photo-slot {
             background-color: var(--wheat);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 200px;
             position: relative;
             overflow: hidden;
+            gap: 0.75rem;
         }
 
-        .product-photo-placeholder::before,
-        .about-photo-placeholder::before,
-        .location-photo-placeholder::before {
+        /* Subtle diagonal lines */
+        .photo-slot::before {
             content: '';
             position: absolute;
             inset: 0;
-            /* Diagonal lines pattern to indicate placeholder */
             background-image: repeating-linear-gradient(
                 -45deg,
                 transparent,
-                transparent 8px,
-                rgba(0,0,0,0.03) 8px,
-                rgba(0,0,0,0.03) 9px
+                transparent 10px,
+                rgba(0,0,0,0.025) 10px,
+                rgba(0,0,0,0.025) 11px
             );
         }
 
-        .product-photo-placeholder span,
-        .about-photo-placeholder span,
-        .location-photo-placeholder span {
+        /* Botanical leaf SVG icon — inline, no HTTP request */
+        .photo-slot::after {
+            content: '';
+            width: 36px;
+            height: 36px;
+            opacity: 0.25;
+            z-index: 1;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%234a6741' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 34 C18 34 4 24 4 14 C4 6 10 2 18 2 C26 2 32 6 32 14 C32 24 18 34 18 34Z'/%3E%3Cpath d='M18 6 L18 30'/%3E%3Cpath d='M18 12 L12 8'/%3E%3Cpath d='M18 12 L24 8'/%3E%3Cpath d='M18 18 L11 14'/%3E%3Cpath d='M18 18 L25 14'/%3E%3Cpath d='M18 24 L13 20'/%3E%3Cpath d='M18 24 L23 20'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .photo-slot span {
             font-family: 'DM Sans', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-muted);
-            letter-spacing: 0.04em;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
             z-index: 1;
-            background: var(--parchment);
-            padding: 0.4rem 0.8rem;
         }
+
+        /* Size variants */
+        .photo-slot--landscape {
+            aspect-ratio: 16 / 9;
+        }
+
+        .photo-slot--square {
+            aspect-ratio: 1 / 1;
+        }
+
+        .photo-slot--wide {
+            aspect-ratio: 3 / 1;
+            max-height: 340px;
+        }
+
+        /* =============================================
+           ORGANIC DIVIDERS — wavy SVG, botanical accent
+           ============================================= */
+
+        /* Wavy section divider */
+        .divider-wave {
+            display: block;
+            width: 100%;
+            height: 24px;
+            margin: 3rem 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C150 0 250 24 400 12 C550 0 650 24 800 12 C950 0 1050 24 1200 12' stroke='%23d5cbaf' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-size: 1200px 24px;
+            background-repeat: repeat-x;
+            background-position: center;
+        }
+
+        /* Botanical sprig accent — small decorative mark */
+        .botanical-accent {
+            display: block;
+            width: 40px;
+            height: 50px;
+            margin: 2rem auto;
+            opacity: 0.35;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none' stroke='%234a6741' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M20 48 L20 8'/%3E%3Cpath d='M20 8 C20 8 12 2 8 6 C4 10 10 16 20 14'/%3E%3Cpath d='M20 8 C20 8 28 2 32 6 C36 10 30 16 20 14'/%3E%3Cpath d='M20 18 C20 18 10 14 8 20 C6 26 14 28 20 24'/%3E%3Cpath d='M20 18 C20 18 30 14 32 20 C34 26 26 28 20 24'/%3E%3Cpath d='M20 30 C20 30 13 27 12 32 C11 37 16 38 20 36'/%3E%3Cpath d='M20 30 C20 30 27 27 28 32 C29 37 24 38 20 36'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        /* Irregular hand-drawn border for feature sections */
+        .hand-border-top {
+            border-top: none;
+            position: relative;
+        }
+
+        .hand-border-top::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2 C40 0.5 80 3.5 120 2 C160 0.5 200 3 240 2 C280 1 320 3.5 360 2 C400 0.5 440 3 480 2 C520 1 560 3.5 600 2' stroke='%23bf3a2b' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-size: 600px 4px;
+            background-repeat: repeat-x;
+        }
+
+        /* Slight rotation for imperfection on select elements */
+        .tilt-slight { transform: rotate(-0.4deg); }
+        .tilt-slight-right { transform: rotate(0.3deg); }
 
         /* Drink cards: visually lighter */
         .product-drink {
             border-top-color: var(--clay);
+        }
+
+        /* Standard product card photo */
+        .product-card > .photo-slot {
+            margin: -2rem -2rem 1.5rem -2rem;
+            min-height: 160px;
         }
 
         .product-card h3 {
@@ -501,9 +624,12 @@
             line-height: 1.4;
         }
 
-        .about-photo-placeholder {
-            min-height: 250px;
+        .about-photo-area {
             margin-bottom: 3rem;
+        }
+
+        .about-photo-area .photo-slot {
+            min-height: 280px;
             border: 1px solid var(--border);
         }
 
@@ -558,8 +684,8 @@
             margin-bottom: 1rem;
         }
 
-        .location-photo-placeholder {
-            min-height: 180px;
+        .location-photo-area .photo-slot {
+            min-height: 200px;
             border: 1px solid var(--border);
         }
 
@@ -710,6 +836,20 @@
             font-family: 'DM Sans', sans-serif;
             font-size: 0.9rem;
             letter-spacing: 0.02em;
+            position: relative;
+        }
+
+        /* Irregular wavy top edge */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: 0;
+            right: 0;
+            height: 12px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 12' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L0 6 C100 0 200 10 300 5 C400 0 500 8 600 4 C700 0 800 9 900 5 C1000 1 1100 8 1200 6 L1200 12 Z' fill='%232c3e2c'/%3E%3C/svg%3E");
+            background-size: 1200px 12px;
+            background-repeat: repeat-x;
         }
 
         .footer-inner {
@@ -858,7 +998,7 @@
 
             .product-featured-inner,
             .product-featured-inner.reverse {
-                grid-template-columns: 220px 1fr;
+                grid-template-columns: 240px 1fr;
             }
 
             .about-columns {
@@ -904,12 +1044,20 @@
                 grid-template-columns: 1fr;
             }
 
-            .product-featured-inner .product-photo-placeholder {
-                min-height: 160px;
+            .product-featured-inner .photo-slot {
+                min-height: 180px;
             }
 
-            .product-featured-inner.reverse .product-photo-placeholder {
+            .product-featured-inner.reverse .photo-slot {
                 order: 0;
+            }
+
+            .product-card > .photo-slot {
+                min-height: 140px;
+            }
+
+            .hero-photo .photo-slot {
+                aspect-ratio: 2 / 1;
             }
 
             .product-featured-text {
@@ -957,8 +1105,16 @@
                 gap: 0.75rem;
             }
 
+            .nav-dot {
+                display: none;
+            }
+
             .hero-title {
                 font-size: 1.9rem;
+            }
+
+            .tilt-slight, .tilt-slight-right {
+                transform: none;
             }
 
             .social-links {
@@ -983,9 +1139,13 @@
     <nav aria-label="Main navigation">
         <ul>
             <li><a href="#home">Home</a></li>
+            <li class="nav-dot" aria-hidden="true">&bull;</li>
             <li><a href="#products">Products</a></li>
+            <li class="nav-dot" aria-hidden="true">&bull;</li>
             <li><a href="#about">About</a></li>
-            <li><a href="#locations">Where to Buy</a></li>
+            <li class="nav-dot" aria-hidden="true">&bull;</li>
+            <li><a href="#locations">Find Us</a></li>
+            <li class="nav-dot" aria-hidden="true">&bull;</li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -999,6 +1159,12 @@
             <p class="hero-subtitle">Fermented foods made with intention.<br>Sauerkraut, kimchi, pickles, hot sauce, kombucha &amp; more.</p>
             <a href="#contact" class="cta-button">Order a Custom Batch</a>
         </div>
+        <div class="hero-photo">
+            <!-- Replace with: <img src="hero-market-morning.jpg" alt="Jars of fermented foods at the Missoula Farmers Market booth" loading="eager"> -->
+            <div class="photo-slot photo-slot--wide" aria-hidden="true">
+                <span>Market morning &mdash; jars, booth, mountains</span>
+            </div>
+        </div>
     </div>
 
     <div class="container">
@@ -1008,10 +1174,11 @@
             <div class="products-grid">
 
                 <!-- Featured: spans full width -->
-                <div class="product-card product-featured">
+                <div class="product-card product-featured hand-border-top">
                     <div class="product-featured-inner">
-                        <div class="product-photo-placeholder" aria-hidden="true">
-                            <span>photo coming soon</span>
+                        <!-- Replace with: <img src="huckleberry-kraut.jpg" alt="Huckleberry Red Cabbage Sauerkraut — deep purple kraut in a 16oz jar" class="product-img" loading="lazy"> -->
+                        <div class="photo-slot" aria-hidden="true">
+                            <span>Huckleberry kraut</span>
                         </div>
                         <div class="product-featured-text">
                             <h3>Huckleberry Red Cabbage Sauerkraut</h3>
@@ -1024,10 +1191,11 @@
                 </div>
 
                 <!-- Featured: spans full width -->
-                <div class="product-card product-featured">
+                <div class="product-card product-featured hand-border-top">
                     <div class="product-featured-inner reverse">
-                        <div class="product-photo-placeholder" aria-hidden="true">
-                            <span>photo coming soon</span>
+                        <!-- Replace with: <img src="montana-kimchi.jpg" alt="Montana Kimchi with Flathead cherries — 16oz jar" class="product-img" loading="lazy"> -->
+                        <div class="photo-slot" aria-hidden="true">
+                            <span>Montana kimchi</span>
                         </div>
                         <div class="product-featured-text">
                             <h3>Montana Kimchi</h3>
@@ -1040,7 +1208,9 @@
                 </div>
 
                 <!-- Standard cards -->
-                <div class="product-card">
+                <div class="product-card tilt-slight">
+                    <!-- Replace with: <img src="giardiniera.jpg" alt="Chicago-Style Fermented Giardiniera" loading="lazy"> -->
+                    <div class="photo-slot" aria-hidden="true"><span>Giardiniera</span></div>
                     <h3>Chicago-Style Fermented Giardiniera</h3>
                     <span class="product-size">12 oz jar &middot; $12</span>
                     <p>Live-culture lacto-fermented giardiniera &mdash; not vinegar-packed like everything else on the shelf. That means actual probiotics, brighter flavor, and real fermentation tang. Aleppo pepper instead of standard crushed red brings fruity, sun-dried-tomato warmth. Toasted fennel, coriander, and peppercorns in the brine. A fresh oregano sprig and olive oil drizzle go in at packing &mdash; it&rsquo;s the first thing you smell when the jar opens. No celery (it doesn&rsquo;t hold up in a real ferment).</p>
@@ -1048,7 +1218,9 @@
                     <p class="use-cases">Italian beef, brats, burgers, antipasto, pizza, chopped into relish.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card tilt-slight-right">
+                    <!-- Replace with: <img src="citrus-herb-cucumbers.jpg" alt="Citrus & Herb Fermented Cucumbers + Onion" loading="lazy"> -->
+                    <div class="photo-slot" aria-hidden="true"><span>Citrus cucumbers</span></div>
                     <h3>Citrus &amp; Herb Fermented Cucumbers + Onion</h3>
                     <span class="product-size">16 oz jar &middot; $12</span>
                     <p>Half-sour lacto-fermented pickles where citrus is the background note, not the headline. People taste these and can&rsquo;t quite place what makes them different. The answer is bruised lemongrass adding a floral layer, triple citrus zest (lemon, lime, orange &mdash; zest only, never pith), and toasted coriander with black, white, and pink peppercorns. Fresh bay, kaffir lime leaf, dill, thyme, jalapeño. Pulled at 3&ndash;5 days while still bright and snappy.</p>
@@ -1057,6 +1229,8 @@
                 </div>
 
                 <div class="product-card">
+                    <!-- Replace with: <img src="fresno-hot-sauce.jpg" alt="Fresno Fermented Hot Sauce" loading="lazy"> -->
+                    <div class="photo-slot" aria-hidden="true"><span>Hot sauce</span></div>
                     <h3>Fresno Fermented Hot Sauce</h3>
                     <span class="product-size">8 oz bottle &middot; $12</span>
                     <p>Thirty percent of the Fresno peppers get charred before fermentation &mdash; that&rsquo;s where the smoky depth and caramelized sweetness come from. The rest go in raw for bright, fresh heat. Garlic and ginger ferment right alongside the peppers. Cayenne and smoked paprika layer in at the start for complexity, soy sauce for umami, rice vinegar finish for the softest acid profile. Double-blended and strained through a chinois &mdash; smooth, pourable, lives on the table.</p>
@@ -1065,6 +1239,8 @@
                 </div>
 
                 <div class="product-card">
+                    <!-- Replace with: <img src="fermented-mustard.jpg" alt="Whole-Seed Fermented Mustard" loading="lazy"> -->
+                    <div class="photo-slot" aria-hidden="true"><span>Mustard</span></div>
                     <h3>Whole-Seed Fermented Mustard</h3>
                     <span class="product-size">8 oz jar &middot; $9</span>
                     <p>The seeds get toasted before soaking &mdash; that&rsquo;s what unlocks the aromatics most mustards never develop. Yellow and black mustard seeds, white balsamic vinegar, local Montana honey for sweetness and floral notes, cracked black pepper, turmeric, garlic. After fermentation, a three-day cure transforms it from aggressively sharp to deeply savory. Texture is the point: whole seeds that pop and give body in every bite.</p>
@@ -1087,6 +1263,8 @@
 
             </div>
         </section>
+
+        <div class="divider-wave" aria-hidden="true"></div>
 
         <section id="about" class="about-section">
             <h2>Our Story</h2>
@@ -1116,9 +1294,14 @@
                     </div>
                 </div>
 
-                <div class="about-photo-placeholder" aria-hidden="true">
-                    <span>photo &mdash; hands at work, market morning, jars on the shelf</span>
+                <div class="about-photo-area">
+                    <!-- Replace with: <img src="founder-at-work.jpg" alt="Preparing ferments — hands at work in the kitchen" loading="lazy"> -->
+                    <div class="photo-slot photo-slot--landscape" aria-hidden="true">
+                        <span>Hands at work, market morning, jars on the shelf</span>
+                    </div>
                 </div>
+
+                <div class="botanical-accent" aria-hidden="true"></div>
 
                 <div class="about-closing">
                     <p>At its core, Raydiant Ferments is an extension of how I have always worked: help people feel better, feed them well, and leave systems stronger than you found them.</p>
@@ -1136,8 +1319,11 @@
                     <h3>Missoula Farmers Market</h3>
                     <p class="location-detail">Saturdays, 8am &ndash; 1pm &middot; May through October</p>
                     <p>This is home base. Come by the booth, taste what&rsquo;s new, talk fermentation. We&rsquo;re always happy to nerd out about gut health and flavor.</p>
-                    <div class="location-photo-placeholder" aria-hidden="true">
-                        <span>photo &mdash; booth at the market, jars lined up, morning light</span>
+                    <div class="location-photo-area">
+                        <!-- Replace with: <img src="market-booth.jpg" alt="Raydiant Ferments booth at the Missoula Farmers Market" loading="lazy"> -->
+                        <div class="photo-slot photo-slot--landscape" aria-hidden="true">
+                            <span>Booth at the market, jars lined up, morning light</span>
+                        </div>
                     </div>
                 </div>
 
@@ -1154,6 +1340,8 @@
                 </div>
             </div>
         </section>
+
+        <div class="botanical-accent" aria-hidden="true"></div>
 
         <section id="contact">
             <h2>Get in Touch</h2>
