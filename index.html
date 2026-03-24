@@ -60,36 +60,36 @@
            COLOR SYSTEM — all colors as CSS variables
            ============================================= */
         :root {
-            /* Primary palette */
-            --ink: #1a2e1a;              /* deepest green — primary text */
-            --forest: #2c3e2c;           /* dark green — nav, footer, headings */
-            --moss: #4a6741;             /* mid green — secondary elements */
-            --sage: #7d8c6e;             /* muted sage — tertiary, borders */
+            /* Primary palette — from logo */
+            --ink: #1A271D;              /* Deep Forest Green — primary text, headings */
+            --forest: #1A271D;           /* Deep Forest Green — nav, footer, dark backgrounds */
+            --moss: #2D6F3F;             /* Mountain Green — secondary elements, links */
+            --sage: #5a8a5e;             /* derived lighter mountain green — tertiary */
 
-            /* Warm neutrals */
-            --cream: #f4eed8;            /* warm cream — main background */
-            --parchment: #ebe3cb;        /* deeper cream — card backgrounds */
-            --linen: #faf6ee;            /* lightest — subtle contrast areas */
-            --wheat: #d4c5a0;            /* warm tan — borders, dividers */
-            --bark: #3d2b1f;             /* dark brown — warm alternative to black */
+            /* Warm neutrals — from logo */
+            --cream: #FFFFE3;            /* Logo cream — main background */
+            --parchment: #f5f0d4;        /* cream-gold tint — card backgrounds */
+            --linen: #fdfcf0;            /* lightest cream — subtle contrast areas */
+            --wheat: #B0A383;            /* Warm Stone (crock) — borders, dividers */
+            --bark: #2a1f14;             /* dark warm brown — alt to black */
 
-            /* Accent colors */
-            --pepper: #bf3a2b;           /* Fresno pepper red — primary accent */
-            --pepper-light: #d4564a;     /* lighter pepper for hovers */
-            --huckleberry: #6b3a5c;      /* huckleberry purple — secondary accent */
-            --clay: #c17a3a;             /* warm amber — tertiary accent */
+            /* Accent colors — gold from logo sun rays */
+            --pepper: #FFBE00;           /* Sun Ray Gold — primary accent */
+            --pepper-light: #e6ab00;     /* darker gold for hover states */
+            --huckleberry: #2D6F3F;      /* Mountain Green — secondary accent */
+            --clay: #d4a017;             /* muted gold — tertiary accent */
 
             /* Functional */
-            --text-body: #3a3a32;        /* warm dark for body text (not pure gray) */
-            --text-muted: #6b6455;       /* muted warm gray */
-            --border: #d5cbaf;           /* warm border color */
-            --focus-ring: var(--pepper); /* accessibility focus color */
-            --success-bg: #e8f0e4;
+            --text-body: #2e3a2e;        /* softened forest green for body text */
+            --text-muted: #5c6356;       /* warm muted green-gray */
+            --border: #c4b896;           /* warm stone border, derived from wheat */
+            --focus-ring: var(--moss);   /* Mountain Green focus ring for accessibility */
+            --success-bg: #eaf3e6;
             --success-text: var(--moss);
             --success-border: var(--sage);
-            --error-bg: #f5e0dd;
-            --error-text: #8b2020;
-            --error-border: var(--pepper);
+            --error-bg: #f5e8dd;
+            --error-text: #8b3a20;
+            --error-border: #c05030;
         }
 
         /* =============================================
@@ -252,7 +252,7 @@
             font-size: 0.8rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--sage);
+            color: var(--wheat);
             margin-bottom: 1rem;
         }
 
@@ -279,8 +279,9 @@
             font-size: 1.15rem;
             font-style: italic;
             margin-bottom: 2.5rem;
-            color: var(--wheat);
+            color: var(--cream);
             line-height: 1.7;
+            opacity: 0.85;
         }
 
         .hero p {
@@ -295,7 +296,7 @@
             display: inline-block;
             font-family: 'DM Sans', sans-serif;
             background-color: var(--pepper);
-            color: var(--linen);
+            color: var(--forest);
             padding: 0.9rem 2rem;
             text-decoration: none;
             font-weight: 700;
@@ -303,13 +304,13 @@
             letter-spacing: 0.04em;
             text-transform: uppercase;
             border: 2px solid var(--pepper);
-            transition: background-color 0.2s, color 0.2s;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, letter-spacing 0.3s ease;
         }
 
         .cta-button:hover {
             background-color: transparent;
-            color: var(--pepper-light);
-            border-color: var(--pepper-light);
+            color: var(--pepper);
+            border-color: var(--pepper);
             transform: none;
             box-shadow: none;
         }
@@ -378,7 +379,7 @@
         /* Featured products span full width with side-by-side layout */
         .product-featured {
             grid-column: 1 / -1;
-            border-top-color: var(--huckleberry);
+            border-top-color: var(--pepper);
             background-color: var(--parchment);
             padding: 0;
             overflow: hidden;
@@ -444,7 +445,7 @@
             height: 36px;
             opacity: 0.25;
             z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%234a6741' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 34 C18 34 4 24 4 14 C4 6 10 2 18 2 C26 2 32 6 32 14 C32 24 18 34 18 34Z'/%3E%3Cpath d='M18 6 L18 30'/%3E%3Cpath d='M18 12 L12 8'/%3E%3Cpath d='M18 12 L24 8'/%3E%3Cpath d='M18 18 L11 14'/%3E%3Cpath d='M18 18 L25 14'/%3E%3Cpath d='M18 24 L13 20'/%3E%3Cpath d='M18 24 L23 20'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%232D6F3F' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 34 C18 34 4 24 4 14 C4 6 10 2 18 2 C26 2 32 6 32 14 C32 24 18 34 18 34Z'/%3E%3Cpath d='M18 6 L18 30'/%3E%3Cpath d='M18 12 L12 8'/%3E%3Cpath d='M18 12 L24 8'/%3E%3Cpath d='M18 18 L11 14'/%3E%3Cpath d='M18 18 L25 14'/%3E%3Cpath d='M18 24 L13 20'/%3E%3Cpath d='M18 24 L23 20'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -482,7 +483,7 @@
             width: 100%;
             height: 24px;
             margin: 3rem 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C150 0 250 24 400 12 C550 0 650 24 800 12 C950 0 1050 24 1200 12' stroke='%23d5cbaf' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C150 0 250 24 400 12 C550 0 650 24 800 12 C950 0 1050 24 1200 12' stroke='%23c4b896' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
             background-size: 1200px 24px;
             background-repeat: repeat-x;
             background-position: center;
@@ -495,7 +496,7 @@
             height: 50px;
             margin: 2rem auto;
             opacity: 0.35;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none' stroke='%234a6741' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M20 48 L20 8'/%3E%3Cpath d='M20 8 C20 8 12 2 8 6 C4 10 10 16 20 14'/%3E%3Cpath d='M20 8 C20 8 28 2 32 6 C36 10 30 16 20 14'/%3E%3Cpath d='M20 18 C20 18 10 14 8 20 C6 26 14 28 20 24'/%3E%3Cpath d='M20 18 C20 18 30 14 32 20 C34 26 26 28 20 24'/%3E%3Cpath d='M20 30 C20 30 13 27 12 32 C11 37 16 38 20 36'/%3E%3Cpath d='M20 30 C20 30 27 27 28 32 C29 37 24 38 20 36'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none' stroke='%232D6F3F' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M20 48 L20 8'/%3E%3Cpath d='M20 8 C20 8 12 2 8 6 C4 10 10 16 20 14'/%3E%3Cpath d='M20 8 C20 8 28 2 32 6 C36 10 30 16 20 14'/%3E%3Cpath d='M20 18 C20 18 10 14 8 20 C6 26 14 28 20 24'/%3E%3Cpath d='M20 18 C20 18 30 14 32 20 C34 26 26 28 20 24'/%3E%3Cpath d='M20 30 C20 30 13 27 12 32 C11 37 16 38 20 36'/%3E%3Cpath d='M20 30 C20 30 27 27 28 32 C29 37 24 38 20 36'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -513,7 +514,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2 C40 0.5 80 3.5 120 2 C160 0.5 200 3 240 2 C280 1 320 3.5 360 2 C400 0.5 440 3 480 2 C520 1 560 3.5 600 2' stroke='%23bf3a2b' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2 C40 0.5 80 3.5 120 2 C160 0.5 200 3 240 2 C280 1 320 3.5 360 2 C400 0.5 440 3 480 2 C520 1 560 3.5 600 2' stroke='%23FFBE00' stroke-width='2' fill='none'/%3E%3C/svg%3E");
             background-size: 600px 4px;
             background-repeat: repeat-x;
         }
@@ -524,7 +525,7 @@
 
         /* Drink cards: visually lighter */
         .product-drink {
-            border-top-color: var(--clay);
+            border-top-color: var(--wheat);
         }
 
         /* Standard product card photo */
@@ -542,7 +543,7 @@
 
         .product-size {
             font-family: 'DM Sans', sans-serif;
-            color: var(--pepper);
+            color: var(--moss);
             font-weight: 500;
             font-size: 0.85rem;
             margin-bottom: 1rem;
@@ -613,7 +614,7 @@
         .pull-quote {
             font-family: 'Young Serif', 'Georgia', serif;
             font-size: 1.6rem;
-            color: var(--pepper);
+            color: var(--moss);
             border-left: 3px solid var(--pepper);
             padding: 0.5rem 0 0.5rem 1.5rem;
             margin: 0 0 2rem 0;
@@ -719,7 +720,7 @@
         }
 
         .location-card a:hover {
-            color: var(--pepper);
+            color: var(--ink);
             border-bottom-color: var(--pepper);
         }
 
@@ -773,7 +774,7 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--moss);
-            box-shadow: 0 0 0 2px rgba(74, 103, 65, 0.15);
+            box-shadow: 0 0 0 2px rgba(45, 111, 63, 0.15);
         }
 
         .submit-button {
@@ -816,7 +817,7 @@
         }
 
         .social-links a:hover {
-            color: var(--pepper);
+            color: var(--ink);
             border-bottom-color: var(--pepper);
         }
 
@@ -843,7 +844,7 @@
             left: 0;
             right: 0;
             height: 12px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 12' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L0 6 C100 0 200 10 300 5 C400 0 500 8 600 4 C700 0 800 9 900 5 C1000 1 1100 8 1200 6 L1200 12 Z' fill='%232c3e2c'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 12' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L0 6 C100 0 200 10 300 5 C400 0 500 8 600 4 C700 0 800 9 900 5 C1000 1 1100 8 1200 6 L1200 12 Z' fill='%231A271D'/%3E%3C/svg%3E");
             background-size: 1200px 12px;
             background-repeat: repeat-x;
         }
@@ -857,7 +858,7 @@
             font-family: 'Source Serif 4', serif;
             font-style: italic;
             font-size: 1.1rem;
-            color: var(--linen);
+            color: var(--cream);
             margin-bottom: 1.25rem;
         }
 
@@ -1196,7 +1197,7 @@
         }
 
         .product-card:hover .flavor-notes {
-            color: var(--pepper);
+            color: var(--ink);
             transition: color 0.3s ease;
         }
 
