@@ -60,36 +60,36 @@
            COLOR SYSTEM — all colors as CSS variables
            ============================================= */
         :root {
-            /* Primary palette */
-            --ink: #1a2e1a;              /* deepest green — primary text */
-            --forest: #2c3e2c;           /* dark green — nav, footer, headings */
-            --moss: #4a6741;             /* mid green — secondary elements */
-            --sage: #7d8c6e;             /* muted sage — tertiary, borders */
+            /* Primary palette — from logo */
+            --ink: #1A271D;              /* Deep Forest Green — primary text, headings */
+            --forest: #1A271D;           /* Deep Forest Green — nav, footer, dark backgrounds */
+            --moss: #2D6F3F;             /* Mountain Green — secondary elements, links */
+            --sage: #5a8a5e;             /* derived lighter mountain green — tertiary */
 
-            /* Warm neutrals */
-            --cream: #f4eed8;            /* warm cream — main background */
-            --parchment: #ebe3cb;        /* deeper cream — card backgrounds */
-            --linen: #faf6ee;            /* lightest — subtle contrast areas */
-            --wheat: #d4c5a0;            /* warm tan — borders, dividers */
-            --bark: #3d2b1f;             /* dark brown — warm alternative to black */
+            /* Warm neutrals — from logo */
+            --cream: #FFFFE3;            /* Logo cream — main background */
+            --parchment: #f5f0d4;        /* cream-gold tint — card backgrounds */
+            --linen: #fdfcf0;            /* lightest cream — subtle contrast areas */
+            --wheat: #B0A383;            /* Warm Stone (crock) — borders, dividers */
+            --bark: #2a1f14;             /* dark warm brown — alt to black */
 
-            /* Accent colors */
-            --pepper: #bf3a2b;           /* Fresno pepper red — primary accent */
-            --pepper-light: #d4564a;     /* lighter pepper for hovers */
-            --huckleberry: #6b3a5c;      /* huckleberry purple — secondary accent */
-            --clay: #c17a3a;             /* warm amber — tertiary accent */
+            /* Accent colors — gold from logo sun rays */
+            --pepper: #FFBE00;           /* Sun Ray Gold — primary accent */
+            --pepper-light: #e6ab00;     /* darker gold for hover states */
+            --huckleberry: #2D6F3F;      /* Mountain Green — secondary accent */
+            --clay: #d4a017;             /* muted gold — tertiary accent */
 
             /* Functional */
-            --text-body: #3a3a32;        /* warm dark for body text (not pure gray) */
-            --text-muted: #6b6455;       /* muted warm gray */
-            --border: #d5cbaf;           /* warm border color */
-            --focus-ring: var(--pepper); /* accessibility focus color */
-            --success-bg: #e8f0e4;
+            --text-body: #2e3a2e;        /* softened forest green for body text */
+            --text-muted: #5c6356;       /* warm muted green-gray */
+            --border: #c4b896;           /* warm stone border, derived from wheat */
+            --focus-ring: var(--moss);   /* Mountain Green focus ring for accessibility */
+            --success-bg: #eaf3e6;
             --success-text: var(--moss);
             --success-border: var(--sage);
-            --error-bg: #f5e0dd;
-            --error-text: #8b2020;
-            --error-border: var(--pepper);
+            --error-bg: #f5e8dd;
+            --error-text: #8b3a20;
+            --error-border: #c05030;
         }
 
         /* =============================================
@@ -252,7 +252,7 @@
             font-size: 0.8rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--sage);
+            color: var(--wheat);
             margin-bottom: 1rem;
         }
 
@@ -279,8 +279,9 @@
             font-size: 1.15rem;
             font-style: italic;
             margin-bottom: 2.5rem;
-            color: var(--wheat);
+            color: var(--cream);
             line-height: 1.7;
+            opacity: 0.85;
         }
 
         .hero p {
@@ -295,7 +296,7 @@
             display: inline-block;
             font-family: 'DM Sans', sans-serif;
             background-color: var(--pepper);
-            color: var(--linen);
+            color: var(--forest);
             padding: 0.9rem 2rem;
             text-decoration: none;
             font-weight: 700;
@@ -303,13 +304,13 @@
             letter-spacing: 0.04em;
             text-transform: uppercase;
             border: 2px solid var(--pepper);
-            transition: background-color 0.2s, color 0.2s;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, letter-spacing 0.3s ease;
         }
 
         .cta-button:hover {
             background-color: transparent;
-            color: var(--pepper-light);
-            border-color: var(--pepper-light);
+            color: var(--pepper);
+            border-color: var(--pepper);
             transform: none;
             box-shadow: none;
         }
@@ -375,14 +376,10 @@
             border-top: 3px solid var(--moss);
         }
 
-        .product-card:hover {
-            border-color: var(--sage);
-        }
-
         /* Featured products span full width with side-by-side layout */
         .product-featured {
             grid-column: 1 / -1;
-            border-top-color: var(--huckleberry);
+            border-top-color: var(--pepper);
             background-color: var(--parchment);
             padding: 0;
             overflow: hidden;
@@ -448,7 +445,7 @@
             height: 36px;
             opacity: 0.25;
             z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%234a6741' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 34 C18 34 4 24 4 14 C4 6 10 2 18 2 C26 2 32 6 32 14 C32 24 18 34 18 34Z'/%3E%3Cpath d='M18 6 L18 30'/%3E%3Cpath d='M18 12 L12 8'/%3E%3Cpath d='M18 12 L24 8'/%3E%3Cpath d='M18 18 L11 14'/%3E%3Cpath d='M18 18 L25 14'/%3E%3Cpath d='M18 24 L13 20'/%3E%3Cpath d='M18 24 L23 20'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%232D6F3F' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 34 C18 34 4 24 4 14 C4 6 10 2 18 2 C26 2 32 6 32 14 C32 24 18 34 18 34Z'/%3E%3Cpath d='M18 6 L18 30'/%3E%3Cpath d='M18 12 L12 8'/%3E%3Cpath d='M18 12 L24 8'/%3E%3Cpath d='M18 18 L11 14'/%3E%3Cpath d='M18 18 L25 14'/%3E%3Cpath d='M18 24 L13 20'/%3E%3Cpath d='M18 24 L23 20'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -486,7 +483,7 @@
             width: 100%;
             height: 24px;
             margin: 3rem 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C150 0 250 24 400 12 C550 0 650 24 800 12 C950 0 1050 24 1200 12' stroke='%23d5cbaf' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C150 0 250 24 400 12 C550 0 650 24 800 12 C950 0 1050 24 1200 12' stroke='%23c4b896' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
             background-size: 1200px 24px;
             background-repeat: repeat-x;
             background-position: center;
@@ -499,7 +496,7 @@
             height: 50px;
             margin: 2rem auto;
             opacity: 0.35;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none' stroke='%234a6741' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M20 48 L20 8'/%3E%3Cpath d='M20 8 C20 8 12 2 8 6 C4 10 10 16 20 14'/%3E%3Cpath d='M20 8 C20 8 28 2 32 6 C36 10 30 16 20 14'/%3E%3Cpath d='M20 18 C20 18 10 14 8 20 C6 26 14 28 20 24'/%3E%3Cpath d='M20 18 C20 18 30 14 32 20 C34 26 26 28 20 24'/%3E%3Cpath d='M20 30 C20 30 13 27 12 32 C11 37 16 38 20 36'/%3E%3Cpath d='M20 30 C20 30 27 27 28 32 C29 37 24 38 20 36'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none' stroke='%232D6F3F' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M20 48 L20 8'/%3E%3Cpath d='M20 8 C20 8 12 2 8 6 C4 10 10 16 20 14'/%3E%3Cpath d='M20 8 C20 8 28 2 32 6 C36 10 30 16 20 14'/%3E%3Cpath d='M20 18 C20 18 10 14 8 20 C6 26 14 28 20 24'/%3E%3Cpath d='M20 18 C20 18 30 14 32 20 C34 26 26 28 20 24'/%3E%3Cpath d='M20 30 C20 30 13 27 12 32 C11 37 16 38 20 36'/%3E%3Cpath d='M20 30 C20 30 27 27 28 32 C29 37 24 38 20 36'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -517,7 +514,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2 C40 0.5 80 3.5 120 2 C160 0.5 200 3 240 2 C280 1 320 3.5 360 2 C400 0.5 440 3 480 2 C520 1 560 3.5 600 2' stroke='%23bf3a2b' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2 C40 0.5 80 3.5 120 2 C160 0.5 200 3 240 2 C280 1 320 3.5 360 2 C400 0.5 440 3 480 2 C520 1 560 3.5 600 2' stroke='%23FFBE00' stroke-width='2' fill='none'/%3E%3C/svg%3E");
             background-size: 600px 4px;
             background-repeat: repeat-x;
         }
@@ -528,7 +525,7 @@
 
         /* Drink cards: visually lighter */
         .product-drink {
-            border-top-color: var(--clay);
+            border-top-color: var(--wheat);
         }
 
         /* Standard product card photo */
@@ -546,7 +543,7 @@
 
         .product-size {
             font-family: 'DM Sans', sans-serif;
-            color: var(--pepper);
+            color: var(--moss);
             font-weight: 500;
             font-size: 0.85rem;
             margin-bottom: 1rem;
@@ -617,7 +614,7 @@
         .pull-quote {
             font-family: 'Young Serif', 'Georgia', serif;
             font-size: 1.6rem;
-            color: var(--pepper);
+            color: var(--moss);
             border-left: 3px solid var(--pepper);
             padding: 0.5rem 0 0.5rem 1.5rem;
             margin: 0 0 2rem 0;
@@ -723,7 +720,7 @@
         }
 
         .location-card a:hover {
-            color: var(--pepper);
+            color: var(--ink);
             border-bottom-color: var(--pepper);
         }
 
@@ -777,7 +774,7 @@
         .form-group select:focus {
             outline: none;
             border-color: var(--moss);
-            box-shadow: 0 0 0 2px rgba(74, 103, 65, 0.15);
+            box-shadow: 0 0 0 2px rgba(45, 111, 63, 0.15);
         }
 
         .submit-button {
@@ -820,7 +817,7 @@
         }
 
         .social-links a:hover {
-            color: var(--pepper);
+            color: var(--ink);
             border-bottom-color: var(--pepper);
         }
 
@@ -847,7 +844,7 @@
             left: 0;
             right: 0;
             height: 12px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 12' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L0 6 C100 0 200 10 300 5 C400 0 500 8 600 4 C700 0 800 9 900 5 C1000 1 1100 8 1200 6 L1200 12 Z' fill='%232c3e2c'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 12' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L0 6 C100 0 200 10 300 5 C400 0 500 8 600 4 C700 0 800 9 900 5 C1000 1 1100 8 1200 6 L1200 12 Z' fill='%231A271D'/%3E%3C/svg%3E");
             background-size: 1200px 12px;
             background-repeat: repeat-x;
         }
@@ -861,7 +858,7 @@
             font-family: 'Source Serif 4', serif;
             font-style: italic;
             font-size: 1.1rem;
-            color: var(--linen);
+            color: var(--cream);
             margin-bottom: 1.25rem;
         }
 
@@ -1123,6 +1120,179 @@
                 gap: 1rem;
             }
         }
+        /* =============================================
+           MOTION — scroll reveals, hovers, page load
+           ============================================= */
+
+        /* --- Page load: hero elements cascade in --- */
+        .hero-tagline,
+        .hero-title,
+        .hero-rule,
+        .hero-subtitle,
+        .hero .cta-button,
+        .hero-photo {
+            opacity: 0;
+            transform: translateY(12px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .hero-tagline    { animation-delay: 0.1s; }
+        .hero-title      { animation-delay: 0.2s; }
+        .hero-rule        { animation-delay: 0.3s; }
+        .hero-subtitle   { animation-delay: 0.4s; }
+        .hero .cta-button { animation-delay: 0.55s; }
+        .hero-photo      { animation-delay: 0.65s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Scroll reveal: elements start hidden, JS adds .is-visible --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger delay via custom property set by JS */
+        .reveal[style*="--delay"] {
+            transition-delay: var(--delay);
+        }
+
+        /* About paragraphs: gentle slide from left/right */
+        .about-col .reveal {
+            transform: translateY(14px);
+        }
+
+        .pull-quote.reveal {
+            transform: translateX(-10px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .pull-quote.reveal.is-visible {
+            transform: translateX(0);
+        }
+
+        /* --- Product card hover: organic warmth, not scale-up --- */
+        .product-card {
+            transition: border-color 0.3s ease, border-top-color 0.3s ease, background-color 0.4s ease;
+        }
+
+        .product-card:hover {
+            border-color: var(--wheat);
+            background-color: var(--parchment);
+        }
+
+        .product-card:hover h3 {
+            color: var(--huckleberry);
+            transition: color 0.3s ease;
+        }
+
+        .product-card:hover .flavor-notes {
+            color: var(--ink);
+            transition: color 0.3s ease;
+        }
+
+        /* Featured cards: border accent breathes on hover */
+        .product-featured:hover {
+            background-color: var(--parchment);
+        }
+
+        .product-featured:hover .photo-slot {
+            background-color: var(--parchment);
+            transition: background-color 0.5s ease;
+        }
+
+        /* CTA button: gentle pulse on hover */
+        .cta-button {
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, letter-spacing 0.3s ease;
+        }
+
+        .cta-button:hover {
+            letter-spacing: 0.08em;
+        }
+
+        /* Submit button: same organic feel */
+        .submit-button {
+            transition: background-color 0.25s ease, color 0.25s ease, letter-spacing 0.3s ease;
+        }
+
+        .submit-button:hover {
+            letter-spacing: 0.06em;
+        }
+
+        /* Location cards: left border widens on hover */
+        .location-card {
+            transition: border-left-width 0.25s ease, padding-left 0.25s ease, background-color 0.3s ease;
+        }
+
+        .location-card:hover {
+            border-left-width: 5px;
+            padding-left: calc(1.75rem - 2px);
+            background-color: var(--parchment);
+        }
+
+        /* Dividers: gentle fade-in on scroll */
+        .divider-wave.reveal,
+        .botanical-accent.reveal {
+            transform: none;
+            transition: opacity 0.6s ease-out;
+        }
+
+        /* Footer sign-off: subtle entrance */
+        .footer-inner .reveal {
+            transform: translateY(8px);
+        }
+
+        /* --- Subtle texture parallax --- */
+        .hero {
+            background-attachment: fixed;
+        }
+
+        /* Disable fixed attachment on mobile (performance) */
+        @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+            }
+        }
+
+        /* =============================================
+           REDUCED MOTION — respect user preference
+           ============================================= */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            .hero-tagline,
+            .hero-title,
+            .hero-rule,
+            .hero-subtitle,
+            .hero .cta-button,
+            .hero-photo {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -1169,12 +1339,12 @@
 
     <div class="container">
         <section id="products">
-            <h2>What We Make</h2>
-            <p class="section-intro">Everything is small-batched, fermentation-first, and made to be eaten with real food &mdash; not treated as an afterthought. Here&rsquo;s what we&rsquo;re bringing to market this season.</p>
+            <h2 class="reveal">What We Make</h2>
+            <p class="section-intro reveal">Everything is small-batched, fermentation-first, and made to be eaten with real food &mdash; not treated as an afterthought. Here&rsquo;s what we&rsquo;re bringing to market this season.</p>
             <div class="products-grid">
 
                 <!-- Featured: spans full width -->
-                <div class="product-card product-featured hand-border-top">
+                <div class="product-card product-featured hand-border-top reveal">
                     <div class="product-featured-inner">
                         <!-- Replace with: <img src="huckleberry-kraut.jpg" alt="Huckleberry Red Cabbage Sauerkraut — deep purple kraut in a 16oz jar" class="product-img" loading="lazy"> -->
                         <div class="photo-slot" aria-hidden="true">
@@ -1191,7 +1361,7 @@
                 </div>
 
                 <!-- Featured: spans full width -->
-                <div class="product-card product-featured hand-border-top">
+                <div class="product-card product-featured hand-border-top reveal">
                     <div class="product-featured-inner reverse">
                         <!-- Replace with: <img src="montana-kimchi.jpg" alt="Montana Kimchi with Flathead cherries — 16oz jar" class="product-img" loading="lazy"> -->
                         <div class="photo-slot" aria-hidden="true">
@@ -1208,7 +1378,7 @@
                 </div>
 
                 <!-- Standard cards -->
-                <div class="product-card tilt-slight">
+                <div class="product-card tilt-slight reveal">
                     <!-- Replace with: <img src="giardiniera.jpg" alt="Chicago-Style Fermented Giardiniera" loading="lazy"> -->
                     <div class="photo-slot" aria-hidden="true"><span>Giardiniera</span></div>
                     <h3>Chicago-Style Fermented Giardiniera</h3>
@@ -1218,7 +1388,7 @@
                     <p class="use-cases">Italian beef, brats, burgers, antipasto, pizza, chopped into relish.</p>
                 </div>
 
-                <div class="product-card tilt-slight-right">
+                <div class="product-card tilt-slight-right reveal">
                     <!-- Replace with: <img src="citrus-herb-cucumbers.jpg" alt="Citrus & Herb Fermented Cucumbers + Onion" loading="lazy"> -->
                     <div class="photo-slot" aria-hidden="true"><span>Citrus cucumbers</span></div>
                     <h3>Citrus &amp; Herb Fermented Cucumbers + Onion</h3>
@@ -1228,7 +1398,7 @@
                     <p class="use-cases">Charcuterie, grilled meats, cocktail garnish, or straight out of the jar.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card reveal">
                     <!-- Replace with: <img src="fresno-hot-sauce.jpg" alt="Fresno Fermented Hot Sauce" loading="lazy"> -->
                     <div class="photo-slot" aria-hidden="true"><span>Hot sauce</span></div>
                     <h3>Fresno Fermented Hot Sauce</h3>
@@ -1238,7 +1408,7 @@
                     <p class="use-cases">Eggs, tacos, roasted veg, grain bowls, marinades &mdash; daily driver, not a novelty burn.</p>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card reveal">
                     <!-- Replace with: <img src="fermented-mustard.jpg" alt="Whole-Seed Fermented Mustard" loading="lazy"> -->
                     <div class="photo-slot" aria-hidden="true"><span>Mustard</span></div>
                     <h3>Whole-Seed Fermented Mustard</h3>
@@ -1249,13 +1419,13 @@
                 </div>
 
                 <!-- Drinks row: side by side -->
-                <div class="product-card product-drink">
+                <div class="product-card product-drink reveal">
                     <h3>Cultured Milk Kefir</h3>
                     <span class="product-size">16 oz &middot; $10 &middot; Plain base &amp; rotating flavors</span>
                     <p>Made with Lifeline dairy from right here in Montana, cultured with live kefir grains &mdash; not powdered starter. That distinction matters: grain-cultured kefir develops a broader spectrum of beneficial bacteria and a cleaner, more complex tang. Lightly effervescent, minimal sweetness, good straight or in smoothies, dressings, and marinades.</p>
                 </div>
 
-                <div class="product-card product-drink">
+                <div class="product-card product-drink reveal">
                     <h3>Small-Batch Kombucha</h3>
                     <span class="product-size">16 oz &middot; $7 &middot; Rotating flavors</span>
                     <p>The flagship is Coffee Kombucha: concentrated cold brew base with cacao nibs steeped in, adding a chocolate undertone without any sweetness. Brewed dry, restrained carbonation, clean finish. This is for people who actually like coffee, not people who want coffee-flavored sugar water. Rotating seasonal flavors beyond coffee &mdash; ginger spice, vanilla-forward, whatever the season calls for.</p>
@@ -1264,18 +1434,18 @@
             </div>
         </section>
 
-        <div class="divider-wave" aria-hidden="true"></div>
+        <div class="divider-wave reveal" aria-hidden="true"></div>
 
         <section id="about" class="about-section">
-            <h2>Our Story</h2>
+            <h2 class="reveal">Our Story</h2>
 
             <div class="about-layout">
-                <div class="about-lead">
+                <div class="about-lead reveal">
                     <p>Raydiant Ferments was born at the intersection of food, science, and care for community.</p>
                 </div>
 
                 <div class="about-columns">
-                    <div class="about-col">
+                    <div class="about-col reveal">
                         <p>For over a decade, my career lived in food and beverage leadership. I have run kitchens, dining rooms, beverage programs, and teams in environments where hospitality is not a concept, it is a responsibility. Food, at its best, is nourishment, culture, and connection. It is how we take care of one another.</p>
 
                         <p>Alongside that work, I was trained as an educator, with a background rooted in math and science. That foundation shaped how I approach food: curious, evidence-based, and deeply interested in how systems work, especially the systems inside our bodies.</p>
@@ -1283,8 +1453,8 @@
                         <p>The spark that turned those threads into Raydiant Ferments came from a life-altering experience. After a severe MRSA infection, I spent an extended period on IV antibiotics. While those treatments saved my life, they also stripped my gut of much of its microbial diversity. Recovery was not just about healing wounds. It was about rebuilding from the inside out.</p>
                     </div>
 
-                    <div class="about-col">
-                        <blockquote class="pull-quote">
+                    <div class="about-col reveal">
+                        <blockquote class="pull-quote reveal">
                             Raydiant Ferments exists to change that.
                         </blockquote>
 
@@ -1294,16 +1464,16 @@
                     </div>
                 </div>
 
-                <div class="about-photo-area">
+                <div class="about-photo-area reveal">
                     <!-- Replace with: <img src="founder-at-work.jpg" alt="Preparing ferments — hands at work in the kitchen" loading="lazy"> -->
                     <div class="photo-slot photo-slot--landscape" aria-hidden="true">
                         <span>Hands at work, market morning, jars on the shelf</span>
                     </div>
                 </div>
 
-                <div class="botanical-accent" aria-hidden="true"></div>
+                <div class="botanical-accent reveal" aria-hidden="true"></div>
 
-                <div class="about-closing">
+                <div class="about-closing reveal">
                     <p>At its core, Raydiant Ferments is an extension of how I have always worked: help people feel better, feed them well, and leave systems stronger than you found them.</p>
 
                     <p>This company is for anyone who believes food should do more than fill a plate. It should help us heal, connect, and thrive.</p>
@@ -1312,10 +1482,10 @@
         </section>
 
         <section id="locations" class="locations-section">
-            <h2>Find Us</h2>
+            <h2 class="reveal">Find Us</h2>
 
             <div class="locations-layout">
-                <div class="location-primary">
+                <div class="location-primary reveal">
                     <h3>Missoula Farmers Market</h3>
                     <p class="location-detail">Saturdays, 8am &ndash; 1pm &middot; May through October</p>
                     <p>This is home base. Come by the booth, taste what&rsquo;s new, talk fermentation. We&rsquo;re always happy to nerd out about gut health and flavor.</p>
@@ -1328,12 +1498,12 @@
                 </div>
 
                 <div class="locations-secondary">
-                    <div class="location-card">
+                    <div class="location-card reveal">
                         <h3>Local Retailers</h3>
                         <p>We&rsquo;re working on partnerships with Missoula-area health food stores and co-ops. Check back for year-round availability.</p>
                     </div>
 
-                    <div class="location-card">
+                    <div class="location-card reveal">
                         <h3>Custom Orders &amp; Wholesale</h3>
                         <p>Stocking up for an event, restaurant, or just your fridge? We take custom orders and offer wholesale pricing. <a href="#contact">Drop us a line.</a></p>
                     </div>
@@ -1341,11 +1511,11 @@
             </div>
         </section>
 
-        <div class="botanical-accent" aria-hidden="true"></div>
+        <div class="botanical-accent reveal" aria-hidden="true"></div>
 
         <section id="contact">
-            <h2>Get in Touch</h2>
-            <div class="contact-form">
+            <h2 class="reveal">Get in Touch</h2>
+            <div class="contact-form reveal">
                 <form id="contactForm" action="https://formspree.io/f/mzdblkol" method="POST">
                     <div class="form-group">
                         <label for="name">Name <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
@@ -1394,9 +1564,9 @@
 
     <footer>
         <div class="footer-inner">
-            <p class="footer-signoff">Made with salt, time, and good bacteria.</p>
-            <div class="footer-rule"></div>
-            <p class="footer-details">Raydiant Ferments &middot; Missoula, Montana</p>
+            <p class="footer-signoff reveal">Made with salt, time, and good bacteria.</p>
+            <div class="footer-rule reveal"></div>
+            <p class="footer-details reveal">Raydiant Ferments &middot; Missoula, Montana</p>
             <p class="footer-details">Brand identity by <a href="https://www.instagram.com/tobinlong/" target="_blank" rel="noopener noreferrer">Tobin Long</a></p>
             <p class="footer-copy">&copy; 2026</p>
         </div>
@@ -1455,6 +1625,65 @@
                 submitBtn.textContent = originalText;
             });
         });
+
+        // =============================================
+        // Scroll reveal with Intersection Observer
+        // Staggered delays for sibling groups
+        // =============================================
+        (function () {
+            // Respect reduced-motion preference
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelectorAll('.reveal').forEach(function (el) {
+                    el.classList.add('is-visible');
+                });
+                return;
+            }
+
+            // Assign stagger delays to product cards within the grid
+            var grid = document.querySelector('.products-grid');
+            if (grid) {
+                var cards = grid.querySelectorAll('.reveal');
+                cards.forEach(function (card, i) {
+                    card.style.setProperty('--delay', (i * 80) + 'ms');
+                });
+            }
+
+            // Assign stagger delays to location cards
+            var locCards = document.querySelectorAll('.locations-secondary .reveal');
+            locCards.forEach(function (card, i) {
+                card.style.setProperty('--delay', ((i + 1) * 100) + 'ms');
+            });
+
+            // Stagger about-col columns
+            var aboutCols = document.querySelectorAll('.about-columns .about-col.reveal');
+            aboutCols.forEach(function (col, i) {
+                col.style.setProperty('--delay', (i * 120) + 'ms');
+            });
+
+            // Footer elements stagger
+            var footerEls = document.querySelectorAll('.footer-inner .reveal');
+            footerEls.forEach(function (el, i) {
+                el.style.setProperty('--delay', (i * 80) + 'ms');
+            });
+
+            // Create the observer
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            // Observe all reveal elements
+            document.querySelectorAll('.reveal').forEach(function (el) {
+                observer.observe(el);
+            });
+        })();
     </script>
 
     <!-- Analytics: Uncomment ONE of the options below after signing up for a service.
