@@ -60,36 +60,31 @@
            COLOR SYSTEM — all colors as CSS variables
            ============================================= */
         :root {
-            /* Primary palette — from logo */
-            --ink: #1A271D;              /* Deep Forest Green — primary text, headings */
-            --forest: #1A271D;           /* Deep Forest Green — nav, footer, dark backgrounds */
-            --moss: #2D6F3F;             /* Mountain Green — secondary elements, links */
-            --sage: #5a8a5e;             /* derived lighter mountain green — tertiary */
+            /* Official brand palette */
+            --color-deep-green: #19271d;     /* Darkest green — text, headings, dark backgrounds, footer */
+            --color-mid-green: #27402d;      /* Mid dark green — secondary dark elements, hover states */
+            --color-mountain-green: #2e6f40; /* Vibrant green — links, accents, secondary elements */
+            --color-stone: #b0a384;          /* Warm tan/stone — borders, dividers, muted UI */
+            --color-gold: #ffbf00;           /* Sun ray gold — primary accent, buttons, CTAs */
+            --color-cream: #ffffe3;          /* Warm cream — page background, light sections */
 
-            /* Warm neutrals — from logo */
-            --cream: #FFFFE3;            /* Logo cream — main background */
-            --parchment: #f5f0d4;        /* cream-gold tint — card backgrounds */
-            --linen: #fdfcf0;            /* lightest cream — subtle contrast areas */
-            --wheat: #B0A383;            /* Warm Stone (crock) — borders, dividers */
-            --bark: #2a1f14;             /* dark warm brown — alt to black */
-
-            /* Accent colors — gold from logo sun rays */
-            --pepper: #FFBE00;           /* Sun Ray Gold — primary accent */
-            --pepper-light: #e6ab00;     /* darker gold for hover states */
-            --huckleberry: #2D6F3F;      /* Mountain Green — secondary accent */
-            --clay: #d4a017;             /* muted gold — tertiary accent */
+            /* Derived tones */
+            --color-gold-dark: #e6ac00;      /* darken gold ~10% for hover states */
+            --color-gold-light: #fdf8e1;     /* very light gold tint for subtle backgrounds */
+            --color-sage: #7db88a;           /* lightened mountain green for section backgrounds */
+            --color-cream-warm: #f5f0d4;     /* cream with gold tint — card backgrounds */
+            --color-text-body: #2a3a2a;      /* slightly softer than deep green for reading */
+            --color-text-muted: #5a6655;     /* desaturated mid-green for captions, meta */
 
             /* Functional */
-            --text-body: #2e3a2e;        /* softened forest green for body text */
-            --text-muted: #5c6356;       /* warm muted green-gray */
-            --border: #c4b896;           /* warm stone border, derived from wheat */
-            --focus-ring: var(--moss);   /* Mountain Green focus ring for accessibility */
-            --success-bg: #eaf3e6;
-            --success-text: var(--moss);
-            --success-border: var(--sage);
-            --error-bg: #f5e8dd;
-            --error-text: #8b3a20;
-            --error-border: #c05030;
+            --color-border: #c4b896;         /* warm stone-derived border */
+            --color-focus-ring: var(--color-mountain-green);
+            --color-success-bg: #eaf3e6;
+            --color-success-text: var(--color-mountain-green);
+            --color-success-border: var(--color-sage);
+            --color-error-bg: #f5e8dd;
+            --color-error-text: #8b3a20;
+            --color-error-border: #c05030;
         }
 
         /* =============================================
@@ -123,8 +118,8 @@
 
         body {
             font-family: 'Source Serif 4', 'Georgia', serif;
-            color: var(--text-body);
-            background-color: var(--cream);
+            color: var(--color-text-body);
+            background-color: var(--color-cream);
             line-height: 1.7;
             font-size: 1.05rem;
             -webkit-font-smoothing: antialiased;
@@ -132,7 +127,7 @@
 
         h1, h2, h3 {
             font-family: 'Young Serif', 'Georgia', serif;
-            color: var(--ink);
+            color: var(--color-deep-green);
             font-weight: 400; /* Young Serif is naturally bold-looking */
             letter-spacing: -0.01em;
         }
@@ -141,7 +136,7 @@
            HEADER / BANNER IMAGE
            ============================================= */
         header {
-            background-color: var(--parchment);
+            background-color: var(--color-cream-warm);
             background-image: url('raydiant-ferments-mountains.jpg');
             background-image: image-set(
                 url('raydiant-ferments-mountains.webp') type('image/webp'),
@@ -160,7 +155,7 @@
            NAVIGATION — organic hover, brand mark
            ============================================= */
         nav {
-            background-color: var(--forest);
+            background-color: var(--color-deep-green);
             padding: 1rem;
             position: sticky;
             top: 0;
@@ -177,9 +172,24 @@
             gap: 2rem;
         }
 
+        .nav-logo {
+            line-height: 0;
+        }
+
+        .nav-logo a::after {
+            display: none;
+        }
+
+        .nav-logo img {
+            height: 70px;
+            width: auto;
+            display: block;
+            border-radius: 50%;
+        }
+
         nav a {
             font-family: 'DM Sans', sans-serif;
-            color: var(--linen);
+            color: var(--color-gold-light);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
@@ -196,14 +206,14 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--clay);
+            background-color: var(--color-gold-dark);
             transition: width 0.3s ease;
             /* slight organic wobble via skew */
             transform: skewX(-8deg);
         }
 
         nav a:hover {
-            color: var(--clay);
+            color: var(--color-gold-dark);
         }
 
         nav a:hover::after {
@@ -212,7 +222,7 @@
 
         /* Dot separator between nav items */
         .nav-dot {
-            color: var(--sage);
+            color: var(--color-sage);
             font-size: 0.5rem;
             line-height: 1;
             user-select: none;
@@ -222,10 +232,10 @@
            HERO SECTION — editorial spread with photo area
            ============================================= */
         .hero {
-            background-color: var(--forest);
+            background-color: var(--color-deep-green);
             background-image:
                 url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            color: var(--linen);
+            color: var(--color-gold-light);
             padding: 4.5rem 2rem 0;
         }
 
@@ -253,7 +263,7 @@
             font-size: 0.8rem;
             letter-spacing: 0.12em;
             text-transform: uppercase;
-            color: var(--wheat);
+            color: var(--color-stone);
             margin-bottom: 1rem;
         }
 
@@ -262,7 +272,7 @@
             font-size: 3.5rem;
             font-weight: 400;
             margin-bottom: 0;
-            color: var(--linen);
+            color: var(--color-gold-light);
             text-shadow: none;
             letter-spacing: -0.02em;
             line-height: 1.1;
@@ -271,7 +281,7 @@
         .hero-rule {
             width: 50px;
             height: 2px;
-            background-color: var(--pepper);
+            background-color: var(--color-gold);
             margin: 1.5rem auto;
         }
 
@@ -280,7 +290,7 @@
             font-size: 1.15rem;
             font-style: italic;
             margin-bottom: 2.5rem;
-            color: var(--cream);
+            color: var(--color-cream);
             line-height: 1.7;
             opacity: 0.85;
         }
@@ -290,28 +300,28 @@
             font-size: 1.15rem;
             font-style: italic;
             margin-bottom: 2rem;
-            color: var(--wheat);
+            color: var(--color-stone);
         }
 
         .cta-button {
             display: inline-block;
             font-family: 'DM Sans', sans-serif;
-            background-color: var(--pepper);
-            color: var(--forest);
+            background-color: var(--color-gold);
+            color: var(--color-deep-green);
             padding: 0.9rem 2rem;
             text-decoration: none;
             font-weight: 700;
             font-size: 0.95rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            border: 2px solid var(--pepper);
+            border: 2px solid var(--color-gold);
             transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, letter-spacing 0.3s ease;
         }
 
         .cta-button:hover {
             background-color: transparent;
-            color: var(--pepper);
-            border-color: var(--pepper);
+            color: var(--color-gold);
+            border-color: var(--color-gold);
             transform: none;
             box-shadow: none;
         }
@@ -322,7 +332,7 @@
             max-width: 600px;
             margin: -0.5rem auto 0;
             font-size: 1.05rem;
-            color: var(--text-muted);
+            color: var(--color-text-muted);
             font-style: italic;
         }
 
@@ -341,7 +351,7 @@
 
         h2 {
             font-size: 2.5rem;
-            color: var(--ink);
+            color: var(--color-deep-green);
             margin-bottom: 2rem;
             text-align: center;
             position: relative;
@@ -356,7 +366,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 2px;
-            background-color: var(--pepper);
+            background-color: var(--color-gold);
         }
 
         /* =============================================
@@ -370,18 +380,18 @@
         }
 
         .product-card {
-            background: var(--linen);
+            background: var(--color-gold-light);
             padding: 2rem;
-            border: 1px solid var(--border);
+            border: 1px solid var(--color-border);
             transition: border-color 0.2s;
-            border-top: 3px solid var(--moss);
+            border-top: 3px solid var(--color-mountain-green);
         }
 
         /* Featured products span full width with side-by-side layout */
         .product-featured {
             grid-column: 1 / -1;
-            border-top-color: var(--pepper);
-            background-color: var(--parchment);
+            border-top-color: var(--color-gold);
+            background-color: var(--color-cream-warm);
             padding: 0;
             overflow: hidden;
         }
@@ -414,7 +424,7 @@
            with an <img> and remove the class.
            ============================================= */
         .photo-slot {
-            background-color: var(--wheat);
+            background-color: var(--color-stone);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -446,7 +456,7 @@
             height: 36px;
             opacity: 0.25;
             z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%232D6F3F' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 34 C18 34 4 24 4 14 C4 6 10 2 18 2 C26 2 32 6 32 14 C32 24 18 34 18 34Z'/%3E%3Cpath d='M18 6 L18 30'/%3E%3Cpath d='M18 12 L12 8'/%3E%3Cpath d='M18 12 L24 8'/%3E%3Cpath d='M18 18 L11 14'/%3E%3Cpath d='M18 18 L25 14'/%3E%3Cpath d='M18 24 L13 20'/%3E%3Cpath d='M18 24 L23 20'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none' stroke='%232e6f40' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 34 C18 34 4 24 4 14 C4 6 10 2 18 2 C26 2 32 6 32 14 C32 24 18 34 18 34Z'/%3E%3Cpath d='M18 6 L18 30'/%3E%3Cpath d='M18 12 L12 8'/%3E%3Cpath d='M18 12 L24 8'/%3E%3Cpath d='M18 18 L11 14'/%3E%3Cpath d='M18 18 L25 14'/%3E%3Cpath d='M18 24 L13 20'/%3E%3Cpath d='M18 24 L23 20'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -454,7 +464,7 @@
         .photo-slot span {
             font-family: 'DM Sans', sans-serif;
             font-size: 0.7rem;
-            color: var(--text-muted);
+            color: var(--color-text-muted);
             letter-spacing: 0.06em;
             text-transform: uppercase;
             z-index: 1;
@@ -484,7 +494,7 @@
             width: 100%;
             height: 24px;
             margin: 3rem 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C150 0 250 24 400 12 C550 0 650 24 800 12 C950 0 1050 24 1200 12' stroke='%23c4b896' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 24' preserveAspectRatio='none'%3E%3Cpath d='M0 12 C150 0 250 24 400 12 C550 0 650 24 800 12 C950 0 1050 24 1200 12' stroke='%23b0a384' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
             background-size: 1200px 24px;
             background-repeat: repeat-x;
             background-position: center;
@@ -497,7 +507,7 @@
             height: 50px;
             margin: 2rem auto;
             opacity: 0.35;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none' stroke='%232D6F3F' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M20 48 L20 8'/%3E%3Cpath d='M20 8 C20 8 12 2 8 6 C4 10 10 16 20 14'/%3E%3Cpath d='M20 8 C20 8 28 2 32 6 C36 10 30 16 20 14'/%3E%3Cpath d='M20 18 C20 18 10 14 8 20 C6 26 14 28 20 24'/%3E%3Cpath d='M20 18 C20 18 30 14 32 20 C34 26 26 28 20 24'/%3E%3Cpath d='M20 30 C20 30 13 27 12 32 C11 37 16 38 20 36'/%3E%3Cpath d='M20 30 C20 30 27 27 28 32 C29 37 24 38 20 36'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 50' fill='none' stroke='%232e6f40' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M20 48 L20 8'/%3E%3Cpath d='M20 8 C20 8 12 2 8 6 C4 10 10 16 20 14'/%3E%3Cpath d='M20 8 C20 8 28 2 32 6 C36 10 30 16 20 14'/%3E%3Cpath d='M20 18 C20 18 10 14 8 20 C6 26 14 28 20 24'/%3E%3Cpath d='M20 18 C20 18 30 14 32 20 C34 26 26 28 20 24'/%3E%3Cpath d='M20 30 C20 30 13 27 12 32 C11 37 16 38 20 36'/%3E%3Cpath d='M20 30 C20 30 27 27 28 32 C29 37 24 38 20 36'/%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -515,7 +525,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2 C40 0.5 80 3.5 120 2 C160 0.5 200 3 240 2 C280 1 320 3.5 360 2 C400 0.5 440 3 480 2 C520 1 560 3.5 600 2' stroke='%23FFBE00' stroke-width='2' fill='none'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 4' preserveAspectRatio='none'%3E%3Cpath d='M0 2 C40 0.5 80 3.5 120 2 C160 0.5 200 3 240 2 C280 1 320 3.5 360 2 C400 0.5 440 3 480 2 C520 1 560 3.5 600 2' stroke='%23ffbf00' stroke-width='2' fill='none'/%3E%3C/svg%3E");
             background-size: 600px 4px;
             background-repeat: repeat-x;
         }
@@ -526,7 +536,7 @@
 
         /* Drink cards: visually lighter */
         .product-drink {
-            border-top-color: var(--wheat);
+            border-top-color: var(--color-stone);
         }
 
         /* Standard product card photo */
@@ -536,7 +546,7 @@
         }
 
         .product-card h3 {
-            color: var(--ink);
+            color: var(--color-deep-green);
             font-size: 1.4rem;
             margin-bottom: 0.5rem;
             line-height: 1.3;
@@ -544,7 +554,7 @@
 
         .product-size {
             font-family: 'DM Sans', sans-serif;
-            color: var(--moss);
+            color: var(--color-mountain-green);
             font-weight: 500;
             font-size: 0.85rem;
             margin-bottom: 1rem;
@@ -554,28 +564,28 @@
         }
 
         .product-card p {
-            color: var(--text-body);
+            color: var(--color-text-body);
             margin-bottom: 0.75rem;
             font-size: 1rem;
         }
 
         .flavor-notes {
             font-style: italic;
-            color: var(--huckleberry);
+            color: var(--color-mountain-green);
             font-size: 0.95rem;
             margin-bottom: 0.75rem;
         }
 
         .use-cases {
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: var(--color-text-muted);
         }
 
         /* =============================================
            ABOUT / OUR STORY — editorial layout
            ============================================= */
         .about-section {
-            background-color: var(--parchment);
+            background-color: var(--color-cream-warm);
             margin-left: -2rem;
             margin-right: -2rem;
             padding: 4rem 2rem;
@@ -594,7 +604,7 @@
         .about-lead p {
             font-family: 'Young Serif', 'Georgia', serif;
             font-size: 1.5rem;
-            color: var(--ink);
+            color: var(--color-deep-green);
             line-height: 1.5;
         }
 
@@ -608,15 +618,15 @@
         .about-col p {
             font-size: 1.05rem;
             margin-bottom: 1.5rem;
-            color: var(--text-body);
+            color: var(--color-text-body);
             line-height: 1.8;
         }
 
         .pull-quote {
             font-family: 'Young Serif', 'Georgia', serif;
             font-size: 1.6rem;
-            color: var(--moss);
-            border-left: 3px solid var(--pepper);
+            color: var(--color-mountain-green);
+            border-left: 3px solid var(--color-gold);
             padding: 0.5rem 0 0.5rem 1.5rem;
             margin: 0 0 2rem 0;
             line-height: 1.4;
@@ -628,7 +638,7 @@
 
         .about-photo-area .photo-slot {
             min-height: 280px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--color-border);
         }
 
         .about-closing {
@@ -640,7 +650,7 @@
         .about-closing p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: var(--text-body);
+            color: var(--color-text-body);
             line-height: 1.8;
         }
 
@@ -656,35 +666,35 @@
         }
 
         .location-primary {
-            background: var(--linen);
+            background: var(--color-gold-light);
             padding: 2.5rem;
-            border: 1px solid var(--border);
-            border-top: 3px solid var(--pepper);
+            border: 1px solid var(--color-border);
+            border-top: 3px solid var(--color-gold);
         }
 
         .location-primary h3 {
             font-size: 1.6rem;
-            color: var(--ink);
+            color: var(--color-deep-green);
             margin-bottom: 0.5rem;
         }
 
         .location-detail {
             font-family: 'DM Sans', sans-serif;
             font-size: 0.9rem;
-            color: var(--moss);
+            color: var(--color-mountain-green);
             font-weight: 500;
             letter-spacing: 0.02em;
             margin-bottom: 1rem;
         }
 
         .location-primary p {
-            color: var(--text-body);
+            color: var(--color-text-body);
             margin-bottom: 1rem;
         }
 
         .location-photo-area .photo-slot {
             min-height: 200px;
-            border: 1px solid var(--border);
+            border: 1px solid var(--color-border);
         }
 
         .locations-secondary {
@@ -694,44 +704,44 @@
         }
 
         .location-card {
-            background: var(--linen);
+            background: var(--color-gold-light);
             padding: 1.75rem;
-            border: 1px solid var(--border);
-            border-left: 3px solid var(--huckleberry);
+            border: 1px solid var(--color-border);
+            border-left: 3px solid var(--color-mountain-green);
         }
 
         .location-card h3 {
-            color: var(--ink);
+            color: var(--color-deep-green);
             margin-bottom: 0.75rem;
             font-size: 1.15rem;
         }
 
         .location-card p {
-            color: var(--text-body);
+            color: var(--color-text-body);
             margin-bottom: 0.5rem;
             font-size: 0.95rem;
         }
 
         .location-card a {
-            color: var(--moss);
+            color: var(--color-mountain-green);
             font-weight: 600;
             text-decoration: none;
-            border-bottom: 1px solid var(--moss);
+            border-bottom: 1px solid var(--color-mountain-green);
             transition: color 0.2s, border-color 0.2s;
         }
 
         .location-card a:hover {
-            color: var(--ink);
-            border-bottom-color: var(--pepper);
+            color: var(--color-deep-green);
+            border-bottom-color: var(--color-gold);
         }
 
         /* =============================================
            CONTACT FORM
            ============================================= */
         .contact-form {
-            background: var(--linen);
+            background: var(--color-gold-light);
             padding: 3rem;
-            border: 1px solid var(--border);
+            border: 1px solid var(--color-border);
             max-width: 600px;
             margin: 0 auto;
             border-radius: 0;
@@ -745,7 +755,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--ink);
+            color: var(--color-deep-green);
             font-family: 'DM Sans', sans-serif;
             font-weight: 500;
             font-size: 0.9rem;
@@ -757,11 +767,11 @@
         .form-group select {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid var(--border);
-            background-color: var(--cream);
+            border: 1px solid var(--color-border);
+            background-color: var(--color-cream);
             font-family: 'Source Serif 4', serif;
             font-size: 1rem;
-            color: var(--text-body);
+            color: var(--color-text-body);
             border-radius: 0;
         }
 
@@ -774,16 +784,16 @@
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--moss);
-            box-shadow: 0 0 0 2px rgba(45, 111, 63, 0.15);
+            border-color: var(--color-mountain-green);
+            box-shadow: 0 0 0 2px rgba(46, 111, 64, 0.15);
         }
 
         .submit-button {
             font-family: 'DM Sans', sans-serif;
-            background-color: var(--forest);
-            color: var(--linen);
+            background-color: var(--color-deep-green);
+            color: var(--color-gold-light);
             padding: 1rem 2rem;
-            border: 2px solid var(--forest);
+            border: 2px solid var(--color-deep-green);
             font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
@@ -796,7 +806,7 @@
 
         .submit-button:hover {
             background-color: transparent;
-            color: var(--forest);
+            color: var(--color-deep-green);
         }
 
         .social-links {
@@ -808,7 +818,7 @@
 
         .social-links a {
             font-family: 'DM Sans', sans-serif;
-            color: var(--moss);
+            color: var(--color-mountain-green);
             font-size: 0.95rem;
             text-decoration: none;
             font-weight: 500;
@@ -818,16 +828,16 @@
         }
 
         .social-links a:hover {
-            color: var(--ink);
-            border-bottom-color: var(--pepper);
+            color: var(--color-deep-green);
+            border-bottom-color: var(--color-gold);
         }
 
         /* =============================================
            FOOTER — personal sign-off
            ============================================= */
         footer {
-            background-color: var(--forest);
-            color: var(--wheat);
+            background-color: var(--color-deep-green);
+            color: var(--color-cream);
             text-align: center;
             padding: 3rem 2rem;
             margin-top: 4rem;
@@ -845,7 +855,7 @@
             left: 0;
             right: 0;
             height: 12px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 12' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L0 6 C100 0 200 10 300 5 C400 0 500 8 600 4 C700 0 800 9 900 5 C1000 1 1100 8 1200 6 L1200 12 Z' fill='%231A271D'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 12' preserveAspectRatio='none'%3E%3Cpath d='M0 12 L0 6 C100 0 200 10 300 5 C400 0 500 8 600 4 C700 0 800 9 900 5 C1000 1 1100 8 1200 6 L1200 12 Z' fill='%2319271d'/%3E%3C/svg%3E");
             background-size: 1200px 12px;
             background-repeat: repeat-x;
         }
@@ -859,36 +869,36 @@
             font-family: 'Source Serif 4', serif;
             font-style: italic;
             font-size: 1.1rem;
-            color: var(--cream);
+            color: var(--color-cream);
             margin-bottom: 1.25rem;
         }
 
         .footer-rule {
             width: 30px;
             height: 2px;
-            background-color: var(--sage);
+            background-color: var(--color-gold);
             margin: 0 auto 1.25rem;
         }
 
         .footer-details {
             margin-bottom: 0.25rem;
-            color: var(--sage);
+            color: var(--color-sage);
         }
 
         .footer-details a {
-            color: var(--wheat);
+            color: var(--color-stone);
             text-decoration: none;
-            border-bottom: 1px solid var(--sage);
+            border-bottom: 1px solid var(--color-sage);
             transition: color 0.2s;
         }
 
         .footer-details a:hover {
-            color: var(--linen);
+            color: var(--color-gold);
         }
 
         .footer-copy {
             margin-top: 1rem;
-            color: var(--sage);
+            color: var(--color-sage);
             font-size: 0.8rem;
         }
 
@@ -896,8 +906,8 @@
            SEASON BANNER
            ============================================= */
         .season-banner {
-            background-color: var(--bark);
-            color: var(--wheat);
+            background-color: var(--color-mid-green);
+            color: var(--color-cream);
             text-align: center;
             padding: 0.75rem 1rem;
             font-family: 'DM Sans', sans-serif;
@@ -926,8 +936,8 @@
             position: absolute;
             top: -100%;
             left: 0;
-            background: var(--forest);
-            color: var(--linen);
+            background: var(--color-deep-green);
+            color: var(--color-gold-light);
             padding: 0.5rem 1rem;
             z-index: 200;
             text-decoration: none;
@@ -943,7 +953,7 @@
         input:focus-visible,
         textarea:focus-visible,
         select:focus-visible {
-            outline: 3px solid var(--focus-ring);
+            outline: 3px solid var(--color-focus-ring);
             outline-offset: 2px;
         }
 
@@ -964,17 +974,17 @@
         .form-status.success {
             display: block;
             padding: 1rem;
-            background-color: var(--success-bg);
-            color: var(--success-text);
-            border: 1px solid var(--success-border);
+            background-color: var(--color-success-bg);
+            color: var(--color-success-text);
+            border: 1px solid var(--color-success-border);
         }
 
         .form-status.error {
             display: block;
             padding: 1rem;
-            background-color: var(--error-bg);
-            color: var(--error-text);
-            border: 1px solid var(--error-border);
+            background-color: var(--color-error-bg);
+            color: var(--color-error-text);
+            border: 1px solid var(--color-error-border);
         }
 
         .submit-button:disabled {
@@ -1188,27 +1198,27 @@
         }
 
         .product-card:hover {
-            border-color: var(--wheat);
-            background-color: var(--parchment);
+            border-color: var(--color-stone);
+            background-color: var(--color-cream-warm);
         }
 
         .product-card:hover h3 {
-            color: var(--huckleberry);
+            color: var(--color-mountain-green);
             transition: color 0.3s ease;
         }
 
         .product-card:hover .flavor-notes {
-            color: var(--ink);
+            color: var(--color-deep-green);
             transition: color 0.3s ease;
         }
 
         /* Featured cards: border accent breathes on hover */
         .product-featured:hover {
-            background-color: var(--parchment);
+            background-color: var(--color-cream-warm);
         }
 
         .product-featured:hover .photo-slot {
-            background-color: var(--parchment);
+            background-color: var(--color-cream-warm);
             transition: background-color 0.5s ease;
         }
 
@@ -1238,7 +1248,7 @@
         .location-card:hover {
             border-left-width: 5px;
             padding-left: calc(1.75rem - 2px);
-            background-color: var(--parchment);
+            background-color: var(--color-cream-warm);
         }
 
         /* Dividers: gentle fade-in on scroll */
@@ -1309,8 +1319,7 @@
 
     <nav aria-label="Main navigation">
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li class="nav-dot" aria-hidden="true">&bull;</li>
+            <li class="nav-logo"><a href="#home"><img src="logo-160.png" alt="Raydiant Ferments" width="160" height="160"></a></li>
             <li><a href="#products">Products</a></li>
             <li class="nav-dot" aria-hidden="true">&bull;</li>
             <li><a href="#about">About</a></li>
