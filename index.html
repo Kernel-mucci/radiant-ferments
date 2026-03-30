@@ -172,21 +172,6 @@
             gap: 2rem;
         }
 
-        .nav-logo {
-            line-height: 0;
-        }
-
-        .nav-logo a::after {
-            display: none;
-        }
-
-        .nav-logo img {
-            height: 70px;
-            width: auto;
-            display: block;
-            border-radius: 50%;
-        }
-
         nav a {
             font-family: 'DM Sans', sans-serif;
             color: var(--color-gold-light);
@@ -246,16 +231,18 @@
             padding-bottom: 3rem;
         }
 
-        /* Landscape hero photo area below the text */
+        /* Hero logo area below the text */
         .hero-photo {
-            max-width: 1200px;
+            max-width: 700px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .hero-photo .photo-slot {
-            aspect-ratio: 3 / 1;
-            max-height: 340px;
-            margin: 0 auto;
+        .hero-logo {
+            max-width: 340px;
+            height: auto;
+            display: inline-block;
+            border-radius: 50%;
         }
 
         .hero-tagline {
@@ -1064,8 +1051,8 @@
                 min-height: 140px;
             }
 
-            .hero-photo .photo-slot {
-                aspect-ratio: 2 / 1;
+            .hero-logo {
+                max-width: 260px;
             }
 
             .product-featured-text {
@@ -1319,7 +1306,8 @@
 
     <nav aria-label="Main navigation">
         <ul>
-            <li class="nav-logo"><a href="#home"><img src="logo-160.png" alt="Raydiant Ferments" width="160" height="160"></a></li>
+            <li><a href="#home">Home</a></li>
+            <li class="nav-dot" aria-hidden="true">&bull;</li>
             <li><a href="#products">Products</a></li>
             <li class="nav-dot" aria-hidden="true">&bull;</li>
             <li><a href="#about">About</a></li>
@@ -1340,10 +1328,7 @@
             <a href="#contact" class="cta-button">Order a Custom Batch</a>
         </div>
         <div class="hero-photo">
-            <!-- Replace with: <img src="hero-market-morning.jpg" alt="Jars of fermented foods at the Missoula Farmers Market booth" loading="eager"> -->
-            <div class="photo-slot photo-slot--wide" aria-hidden="true">
-                <span>Market morning &mdash; jars, booth, mountains</span>
-            </div>
+            <img class="hero-logo" src="logo-400.png" alt="Raydiant Ferments logo — fermentation crock with sun rays, mountains, and botanical elements" width="400" height="400" loading="eager">
         </div>
     </div>
 
