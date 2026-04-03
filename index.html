@@ -24,8 +24,8 @@
     <link rel="canonical" href="https://raydiant-ferments.com/">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="logo-160.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo-160.png">
 
     <!-- Fonts: Young Serif (headings) + Source Serif 4 (body) + DM Sans (nav/ui) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -136,19 +136,18 @@
            HEADER / BANNER IMAGE
            ============================================= */
         header {
-            background-color: var(--color-cream-warm);
-            background-image: url('raydiant-ferments-mountains.jpg');
-            background-image: image-set(
-                url('raydiant-ferments-mountains.webp') type('image/webp'),
-                url('raydiant-ferments-mountains.jpg') type('image/jpeg')
-            );
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            padding: 0;
+            background-color: var(--color-cream);
+            padding: 3rem 2rem;
             text-align: center;
             border-bottom: 0;
-            min-height: 420px;
+        }
+
+        .header-logo {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
 
         /* =============================================
@@ -229,20 +228,6 @@
             margin: 0 auto;
             text-align: center;
             padding-bottom: 3rem;
-        }
-
-        /* Hero logo area below the text */
-        .hero-photo {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .hero-logo {
-            max-width: 340px;
-            height: auto;
-            display: inline-block;
-            border-radius: 50%;
         }
 
         .hero-tagline {
@@ -1051,10 +1036,6 @@
                 min-height: 140px;
             }
 
-            .hero-logo {
-                max-width: 260px;
-            }
-
             .product-featured-text {
                 padding: 1.5rem;
             }
@@ -1127,8 +1108,7 @@
         .hero-title,
         .hero-rule,
         .hero-subtitle,
-        .hero .cta-button,
-        .hero-photo {
+        .hero .cta-button {
             opacity: 0;
             transform: translateY(12px);
             animation: fadeInUp 0.5s ease-out forwards;
@@ -1139,7 +1119,6 @@
         .hero-rule        { animation-delay: 0.3s; }
         .hero-subtitle   { animation-delay: 0.4s; }
         .hero .cta-button { animation-delay: 0.55s; }
-        .hero-photo      { animation-delay: 0.65s; }
 
         @keyframes fadeInUp {
             to {
@@ -1284,8 +1263,7 @@
             .hero-title,
             .hero-rule,
             .hero-subtitle,
-            .hero .cta-button,
-            .hero-photo {
+            .hero .cta-button {
                 opacity: 1 !important;
                 transform: none !important;
             }
@@ -1302,6 +1280,7 @@
 
     <header>
         <h1 class="sr-only">Raydiant Ferments - Small Batch Fermented Foods</h1>
+        <img class="header-logo" src="logo-800.png" alt="Raydiant Ferments — fermentation crock with sun rays, mountains, and botanical elements" width="800" height="800" loading="eager">
     </header>
 
     <nav aria-label="Main navigation">
@@ -1326,9 +1305,6 @@
             <div class="hero-rule"></div>
             <p class="hero-subtitle">Fermented foods made with intention.<br>Sauerkraut, kimchi, pickles, hot sauce, kombucha &amp; more.</p>
             <a href="#contact" class="cta-button">Order a Custom Batch</a>
-        </div>
-        <div class="hero-photo">
-            <img class="hero-logo" src="logo-400.png" alt="Raydiant Ferments logo — fermentation crock with sun rays, mountains, and botanical elements" width="400" height="400" loading="eager">
         </div>
     </div>
 
