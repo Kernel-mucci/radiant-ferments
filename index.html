@@ -965,6 +965,129 @@
             cursor: not-allowed;
         }
 
+        .product-select-area {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+            margin: 0;
+        }
+
+        .product-select-area.is-visible {
+            max-height: 1200px;
+            opacity: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-select-inner {
+            background-color: var(--color-cream);
+            border: 1px solid var(--color-border);
+            padding: 1.25rem;
+        }
+
+        .product-select-inner legend {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--color-deep-green);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 0 0 0.75rem;
+            border: none;
+        }
+
+        .product-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            gap: 0.5rem 0.75rem;
+            align-items: center;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .product-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .product-row input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--color-mountain-green);
+            cursor: pointer;
+        }
+
+        .product-row-label {
+            font-family: 'Source Serif 4', serif;
+            font-size: 0.95rem;
+            color: var(--color-text-body);
+            cursor: pointer;
+            line-height: 1.3;
+        }
+
+        .product-row-label .product-meta {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .product-row-price {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            white-space: nowrap;
+        }
+
+        .product-row input[type="number"] {
+            width: 54px;
+            padding: 0.3rem 0.4rem;
+            border: 1px solid var(--color-border);
+            background-color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            text-align: center;
+            color: var(--color-text-body);
+            border-radius: 0;
+        }
+
+        .product-row input[type="number"]:focus {
+            outline: none;
+            border-color: var(--color-mountain-green);
+            box-shadow: 0 0 0 2px rgba(46, 111, 64, 0.15);
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0 0;
+            margin-top: 0.25rem;
+            border-top: 2px solid var(--color-deep-green);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-deep-green);
+        }
+
+        @media (max-width: 480px) {
+            .product-row {
+                grid-template-columns: auto 1fr auto;
+                gap: 0.4rem 0.5rem;
+            }
+
+            .product-row-price {
+                grid-column: 2;
+                grid-row: 2;
+                font-size: 0.75rem;
+            }
+
+            .product-row input[type="number"] {
+                grid-column: 3;
+                grid-row: 1 / span 2;
+                align-self: center;
+            }
+        }
+
         /* =============================================
            RESPONSIVE — Tablet
            ============================================= */
@@ -1532,12 +1655,95 @@
                         <label for="inquiry-type">Inquiry Type <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
                         <select id="inquiry-type" name="inquiry-type" required>
                             <option value="">Select an option</option>
-                            <option value="custom-order">Custom Order</option>
+                            <option value="custom-order">Online Order</option>
                             <option value="wholesale">Wholesale Inquiry</option>
                             <option value="general">General Question</option>
                             <option value="feedback">Feedback</option>
                         </select>
                     </div>
+
+                    <div class="product-select-area" id="product-select-area">
+                        <fieldset class="product-select-inner">
+                            <legend>Select Products</legend>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-huckleberry" data-price="14" data-name="Huckleberry Red Cabbage Sauerkraut">
+                                <label class="product-row-label" for="prod-huckleberry">Huckleberry Red Cabbage Sauerkraut <span class="product-meta">16 oz</span></label>
+                                <span class="product-row-price">$14</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Huckleberry Red Cabbage Sauerkraut" data-qty-for="prod-huckleberry">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-og-kraut" data-price="14" data-name="OG Kraut">
+                                <label class="product-row-label" for="prod-og-kraut">OG Kraut <span class="product-meta">16 oz</span></label>
+                                <span class="product-row-price">$14</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for OG Kraut" data-qty-for="prod-og-kraut">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-kimchi" data-price="13" data-name="Montana Kimchi">
+                                <label class="product-row-label" for="prod-kimchi">Montana Kimchi <span class="product-meta">16 oz</span></label>
+                                <span class="product-row-price">$13</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Montana Kimchi" data-qty-for="prod-kimchi">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-giardiniera" data-price="12" data-name="Chicago-Style Fermented Giardiniera">
+                                <label class="product-row-label" for="prod-giardiniera">Chicago-Style Fermented Giardiniera <span class="product-meta">12 oz</span></label>
+                                <span class="product-row-price">$12</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Chicago-Style Fermented Giardiniera" data-qty-for="prod-giardiniera">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-cucumbers" data-price="12" data-name="Citrus &amp; Herb Fermented Cucumbers + Onion">
+                                <label class="product-row-label" for="prod-cucumbers">Citrus &amp; Herb Fermented Cucumbers + Onion <span class="product-meta">16 oz</span></label>
+                                <span class="product-row-price">$12</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Citrus and Herb Fermented Cucumbers" data-qty-for="prod-cucumbers">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-hot-sauce" data-price="12" data-name="Fresno Fermented Hot Sauce">
+                                <label class="product-row-label" for="prod-hot-sauce">Fresno Fermented Hot Sauce <span class="product-meta">8 oz</span></label>
+                                <span class="product-row-price">$12</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Fresno Fermented Hot Sauce" data-qty-for="prod-hot-sauce">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-mustard" data-price="10" data-name="Whole-Seed Fermented Mustard">
+                                <label class="product-row-label" for="prod-mustard">Whole-Seed Fermented Mustard <span class="product-meta">8 oz</span></label>
+                                <span class="product-row-price">$10</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Whole-Seed Fermented Mustard" data-qty-for="prod-mustard">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-kefir" data-price="10" data-name="Cultured Milk Kefir">
+                                <label class="product-row-label" for="prod-kefir">Cultured Milk Kefir <span class="product-meta">16 oz</span></label>
+                                <span class="product-row-price">$10</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Cultured Milk Kefir" data-qty-for="prod-kefir">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-kombucha" data-price="7" data-name="Coffee Kombucha">
+                                <label class="product-row-label" for="prod-kombucha">Coffee Kombucha <span class="product-meta">16 oz</span></label>
+                                <span class="product-row-price">$7</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Coffee Kombucha" data-qty-for="prod-kombucha">
+                            </div>
+
+                            <div class="product-row">
+                                <input type="checkbox" id="prod-ginger-beer" data-price="6" data-name="Ginger Beer">
+                                <label class="product-row-label" for="prod-ginger-beer">Ginger Beer <span class="product-meta">16 oz</span></label>
+                                <span class="product-row-price">$6</span>
+                                <input type="number" min="0" max="30" value="0" aria-label="Quantity for Ginger Beer" data-qty-for="prod-ginger-beer">
+                            </div>
+
+                            <div class="order-total">
+                                <span>Order Total</span>
+                                <span id="order-total-amount">$0</span>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <input type="hidden" id="order-summary" name="order-summary" value="">
 
                     <div class="form-group">
                         <label for="message">Message <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
@@ -1583,6 +1789,67 @@
             });
         });
 
+        // Product selection: show/hide, totals, order summary
+        (function () {
+            var inquirySelect = document.getElementById('inquiry-type');
+            var productArea = document.getElementById('product-select-area');
+            var totalEl = document.getElementById('order-total-amount');
+            var summaryInput = document.getElementById('order-summary');
+            var checkboxes = productArea.querySelectorAll('input[type="checkbox"]');
+
+            function toggleProductArea() {
+                if (inquirySelect.value === 'custom-order') {
+                    productArea.classList.add('is-visible');
+                } else {
+                    productArea.classList.remove('is-visible');
+                }
+            }
+
+            function getQtyInput(checkbox) {
+                return productArea.querySelector('[data-qty-for="' + checkbox.id + '"]');
+            }
+
+            function updateTotal() {
+                var total = 0;
+                var items = [];
+                checkboxes.forEach(function (cb) {
+                    var qtyInput = getQtyInput(cb);
+                    var qty = parseInt(qtyInput.value, 10) || 0;
+                    if (cb.checked && qty > 0) {
+                        var price = parseInt(cb.dataset.price, 10);
+                        total += price * qty;
+                        items.push(cb.dataset.name + ' x' + qty);
+                    }
+                });
+                totalEl.textContent = '$' + total;
+                summaryInput.value = items.length ? items.join(', ') + ' | Total: $' + total : '';
+            }
+
+            inquirySelect.addEventListener('change', toggleProductArea);
+
+            checkboxes.forEach(function (cb) {
+                var qtyInput = getQtyInput(cb);
+
+                cb.addEventListener('change', function () {
+                    if (cb.checked && (parseInt(qtyInput.value, 10) || 0) < 1) {
+                        qtyInput.value = 1;
+                    }
+                    if (!cb.checked) {
+                        qtyInput.value = 0;
+                    }
+                    updateTotal();
+                });
+
+                qtyInput.addEventListener('input', function () {
+                    var qty = parseInt(qtyInput.value, 10) || 0;
+                    cb.checked = qty > 0;
+                    updateTotal();
+                });
+            });
+
+            toggleProductArea();
+        })();
+
         // Form submission with feedback
         const form = document.getElementById('contactForm');
         const statusEl = document.getElementById('form-status');
@@ -1607,6 +1874,7 @@
                     statusEl.className = 'form-status success';
                     statusEl.textContent = 'Message sent successfully! We will get back to you soon.';
                     form.reset();
+                    document.getElementById('product-select-area').classList.remove('is-visible');
                 } else {
                     statusEl.className = 'form-status error';
                     statusEl.textContent = 'Something went wrong. Please try again or email us directly.';
