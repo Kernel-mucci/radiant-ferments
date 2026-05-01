@@ -1008,7 +1008,8 @@
             cursor: not-allowed;
         }
 
-        .product-select-area {
+        .product-select-area,
+        .pickup-location-group {
             max-height: 0;
             overflow: hidden;
             opacity: 0;
@@ -1018,6 +1019,12 @@
 
         .product-select-area.is-visible {
             max-height: 1200px;
+            opacity: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .pickup-location-group.is-visible {
+            max-height: 120px;
             opacity: 1;
             margin-bottom: 1.5rem;
         }
@@ -1828,6 +1835,15 @@
 
                     <input type="hidden" id="order-summary" name="order-summary" value="">
 
+                    <div class="form-group pickup-location-group" id="pickup-location-group">
+                        <label for="pickup-location">Pickup Location <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+                        <select id="pickup-location" name="pickup-location">
+                            <option value="">Select a pickup location</option>
+                            <option value="clark-fork-market">Clark Fork Market (Saturdays)</option>
+                            <option value="private-pickup">Private Pickup (Sunday through Friday)</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <label for="message">Message <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
                         <textarea id="message" name="message" required placeholder="Tell us what you're looking for..."></textarea>
@@ -1896,15 +1912,22 @@
         (function () {
             var inquirySelect = document.getElementById('inquiry-type');
             var productArea = document.getElementById('product-select-area');
+            var pickupGroup = document.getElementById('pickup-location-group');
+            var pickupSelect = document.getElementById('pickup-location');
             var totalEl = document.getElementById('order-total-amount');
             var summaryInput = document.getElementById('order-summary');
             var checkboxes = productArea.querySelectorAll('input[type="checkbox"]');
 
             function toggleProductArea() {
-                if (inquirySelect.value === 'custom-order') {
+                var isOrder = inquirySelect.value === 'custom-order';
+                if (isOrder) {
                     productArea.classList.add('is-visible');
+                    pickupGroup.classList.add('is-visible');
+                    pickupSelect.required = true;
                 } else {
                     productArea.classList.remove('is-visible');
+                    pickupGroup.classList.remove('is-visible');
+                    pickupSelect.required = false;
                 }
             }
 
@@ -1978,6 +2001,8 @@
                     statusEl.textContent = 'Message sent successfully! We will get back to you soon.';
                     form.reset();
                     document.getElementById('product-select-area').classList.remove('is-visible');
+                    document.getElementById('pickup-location-group').classList.remove('is-visible');
+                    document.getElementById('pickup-location').required = false;
                 } else {
                     statusEl.className = 'form-status error';
                     statusEl.textContent = 'Something went wrong. Please try again or email us directly.';
